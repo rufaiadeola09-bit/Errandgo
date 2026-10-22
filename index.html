@@ -1,1010 +1,1257 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#11100e">
-<meta name="description" content="ERRANDGO — Shop fresh Nigerian food ingredients, groceries and kitchen essentials.">
 <title>ERRANDGO — Crave More</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
-:root{--orange:#ff6738;--orange-dark:#e84e20;--cream:#fffaf4;--ink:#15130f;--muted:#8c8981;--white:#fff;--line:#eee7de;--green:#238653;--radius:20px;--shadow:0 18px 55px rgba(21,19,15,.09)}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:100px}
-body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
-button,input,select{font:inherit}
+:root{--orange:#ff6738;--cream:#fffaf4;--ink:#15130f;--muted:#8c8981;--line:#eee6dc;--green:#16803d}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+body.locked{overflow:hidden}
+h1,h2,h3,h4,.brand{font-family:"Outfit",sans-serif}
+button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid rgba(255,103,56,.35);outline-offset:3px}
-img{display:block;max-width:100%}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+button:disabled{opacity:.55;cursor:not-allowed}
+img{max-width:100%}
 a{color:inherit;text-decoration:none}
-button{border:0}
 .hidden{display:none!important}
-.container{width:min(1240px,calc(100% - 48px));margin:auto}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--orange)}
-.eyebrow:before{content:"";height:2px;width:22px;background:var(--orange)}
-.primary-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--orange);color:white;border:0;border-radius:12px;padding:14px 20px;font-weight:800;transition:.25s}
-.primary-btn:hover{background:var(--orange-dark);transform:translateY(-2px)}
-.secondary-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;border:1px solid var(--line);background:white;border-radius:12px;font-weight:700;transition:.2s}
-.secondary-btn:hover{border-color:var(--orange);color:var(--orange)}
-.site-header{position:sticky;top:0;z-index:50;background:rgba(255,250,244,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(21,19,15,.07)}
-.header-inner{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.brand-mark{height:43px;width:43px;border-radius:14px;background:var(--orange);display:grid;place-items:center;color:white;font-size:21px;transform:rotate(-5deg)}
-.brand-name{font-family:Outfit,sans-serif;font-size:24px;font-weight:900;letter-spacing:-1.2px}
-.brand-name span{color:var(--orange)}
-.brand small{display:block;font-size:9px;letter-spacing:2px;color:var(--muted);font-weight:800;margin-top:-3px}
-.desktop-nav{display:flex;align-items:center;gap:26px}
-.desktop-nav a{font-size:13px;font-weight:700;color:#615c54;transition:.2s}
-.desktop-nav a:hover,.desktop-nav a.active{color:var(--orange)}
-.header-actions{display:flex;align-items:center;gap:10px}
-.icon-btn{height:43px;min-width:43px;padding:0 12px;background:white;border:1px solid var(--line);border-radius:13px;display:flex;align-items:center;justify-content:center;gap:8px;position:relative}
-.icon-btn:hover{border-color:var(--orange);color:var(--orange)}
-.cart-count{position:absolute;top:-6px;right:-5px;min-width:19px;height:19px;padding:0 5px;border-radius:20px;background:var(--orange);color:white;font-size:10px;display:grid;place-items:center;font-weight:800}
-.account-btn{padding:13px 16px;border-radius:12px;background:var(--ink);color:white;font-size:12px;font-weight:800}
-.account-btn:hover{background:var(--orange)}
-.mobile-menu-btn{display:none}
-.hero{padding:34px 0 55px}
-.hero-panel{min-height:445px;background:#17140f;border-radius:28px;overflow:hidden;position:relative;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;color:white}
-.hero-copy{position:relative;z-index:2;padding:58px 0 58px 62px;max-width:650px}
-.hero-label{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.18);border-radius:50px;padding:9px 13px;color:#f4cbb9;font-size:11px;font-weight:800;letter-spacing:.6px}
-.hero-label i{color:var(--orange)}
-.hero h1{font-family:Outfit,sans-serif;font-size:clamp(43px,5.1vw,72px);line-height:.99;letter-spacing:-3.5px;margin:24px 0 20px;font-weight:900}
-.hero h1 span{color:var(--orange)}
-.hero-copy>p{color:#c4bdb2;font-size:15px;line-height:1.9;max-width:440px}
-.hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:28px}
-.hero .secondary-btn{background:transparent;border-color:#4b443a;color:white}
-.hero .secondary-btn:hover{border-color:var(--orange);color:var(--orange)}
-.hero-stats{display:flex;gap:28px;margin-top:35px;flex-wrap:wrap}
-.hero-stat strong{display:block;font-family:Outfit,sans-serif;font-size:22px}
-.hero-stat span{font-size:10px;color:#b7afa4}
-.hero-visual{height:100%;min-height:445px;position:relative;overflow:hidden}
-.hero-visual:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#17140f 0%,rgba(23,20,15,.3) 40%,transparent 100%)}
-.hero-visual img{height:100%;width:100%;object-fit:cover;position:absolute;inset:0;filter:saturate(1.08)}
-.hero-floating{position:absolute;z-index:3;right:22px;bottom:28px;background:white;color:var(--ink);padding:15px 18px;border-radius:17px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;animation:float 4s ease-in-out infinite}
-.float-icon{width:40px;height:40px;border-radius:12px;background:#fff0e8;color:var(--orange);display:grid;place-items:center}
-.hero-floating strong{font-size:13px;display:block}
-.hero-floating small{font-size:10px;color:var(--muted)}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;padding:25px 0 45px}
-.trust-item{display:flex;align-items:center;gap:12px;padding:8px 10px}
-.trust-icon{width:43px;height:43px;flex-shrink:0;border-radius:14px;background:#fff0e8;color:var(--orange);display:grid;place-items:center;font-size:17px}
-.trust-item strong{display:block;font-size:12px}
-.trust-item span{display:block;font-size:10px;color:var(--muted);margin-top:4px}
-.section{padding:40px 0 60px}
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:25px}
-.section-head h2{font-family:Outfit,sans-serif;font-size:clamp(27px,3vw,39px);letter-spacing:-1.3px;margin-top:10px}
-.section-head p{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.7}
-.text-link{font-size:12px;font-weight:800;color:var(--orange);display:inline-flex;gap:8px;align-items:center;white-space:nowrap}
-.category-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
-.category-card{background:white;border:1px solid #f1ebe4;border-radius:18px;padding:22px 12px;text-align:center;transition:.25s;cursor:pointer}
-.category-card:hover,.category-card.active{transform:translateY(-4px);border-color:var(--orange);box-shadow:0 12px 30px rgba(255,103,56,.09)}
-.category-card.active{background:#fff1e9}
-.category-icon{height:54px;width:54px;margin:0 auto 13px;border-radius:17px;background:#fff0e8;display:grid;place-items:center;color:var(--orange);font-size:22px}
-.category-card strong{font-size:12px;display:block}
-.category-card small{font-size:10px;color:var(--muted);display:block;margin-top:6px}
-.shop-section{padding-top:35px}
-.shop-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:23px}
-.search-box{height:48px;display:flex;align-items:center;gap:11px;padding:0 15px;border:1px solid var(--line);background:white;border-radius:13px;flex:1;max-width:440px;min-width:200px}
-.search-box i{color:var(--muted)}
-.search-box input{width:100%;border:0;outline:none;background:transparent;font-size:12px}
-.shop-controls{display:flex;align-items:center;gap:10px}
-.select-control{height:45px;padding:0 13px;border:1px solid var(--line);border-radius:12px;background:white;font-size:12px;font-weight:700;max-width:180px}
-.result-count{font-size:12px;color:var(--muted)}
-.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:19px}
-.product-card{min-width:0;background:white;border:1px solid #f0eae3;border-radius:19px;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
-.product-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#f6d4c4}
-.product-image{height:205px;background:#f5eee6;position:relative;overflow:hidden}
-.product-image img{height:100%;width:100%;object-fit:cover;transition:transform .45s}
-.product-card:hover .product-image img{transform:scale(1.06)}
-.product-image .badge{position:absolute;top:12px;left:12px;background:white;border-radius:8px;padding:7px 9px;font-size:9px;font-weight:800;color:var(--orange)}
-.product-image .favorite{position:absolute;top:10px;right:10px;width:33px;height:33px;border-radius:50%;background:rgba(255,255,255,.95);color:#766f66;display:grid;place-items:center}
-.product-image .favorite.liked{color:#e44e48}
-.product-image .favorite:hover{color:var(--orange)}
-.product-image .missing-image{display:none;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:9px;color:#82796e;font-size:11px;text-align:center;padding:15px}
-.product-image .missing-image i{font-size:25px;color:#c8b8a7}
-.product-body{padding:15px}
-.product-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;color:var(--muted);margin-bottom:9px}
-.product-meta .rating{color:#d28a19;white-space:nowrap}
-.product-body h3{font-family:Outfit,sans-serif;font-size:15px;line-height:1.35;min-height:40px}
-.product-desc{font-size:11px;line-height:1.65;color:var(--muted);margin-top:6px;min-height:36px}
-.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:16px}
-.price{font-family:Outfit,sans-serif;font-size:18px;font-weight:800;white-space:nowrap}
-.price small{display:block;font:10px "DM Sans",sans-serif;color:var(--muted);margin-top:2px}
-.add-btn{width:38px;height:38px;flex-shrink:0;background:var(--orange);color:white;border-radius:12px;display:grid;place-items:center;transition:.2s}
-.add-btn:hover{background:var(--ink);transform:scale(1.04)}
-.empty-state{grid-column:1/-1;padding:55px 20px;background:white;border:1px dashed #e8d8c8;border-radius:18px;text-align:center}
-.empty-state i{font-size:32px;color:var(--orange);margin-bottom:12px}
-.empty-state h3{font-size:18px}
-.empty-state p{font-size:12px;color:var(--muted);margin-top:7px}
-.promo-section{padding:15px 0 65px}
-.promo-panel{display:grid;grid-template-columns:1fr .8fr;min-height:280px;background:#ffe9db;border-radius:24px;overflow:hidden}
-.promo-copy{padding:40px 48px;align-self:center}
-.promo-copy h2{font-family:Outfit,sans-serif;font-size:clamp(28px,3.5vw,43px);line-height:1.1;letter-spacing:-1.4px;margin:14px 0}
-.promo-copy p{font-size:13px;color:#716357;line-height:1.8;max-width:430px;margin-bottom:20px}
-.promo-image{min-height:280px;overflow:hidden}
-.promo-image img{height:100%;width:100%;object-fit:cover}
-.promo-image img.image-broken{visibility:hidden}
+.orange{color:var(--orange)}
+.muted{color:var(--muted)}
+.container{width:min(1180px,calc(100% - 44px));margin:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 19px;border:0;border-radius:12px;background:var(--orange);color:white;font-size:13px;font-weight:800;transition:.25s}
+.btn:hover{background:#ed5125;transform:translateY(-2px);box-shadow:0 10px 25px #ff67382b}
+.btn-dark{background:var(--ink)}
+.btn-dark:hover{background:#39332c}
+.btn-light{background:white;color:var(--ink);border:1px solid var(--line)}
+.btn-light:hover{background:#fff1e8;color:var(--orange)}
+.icon-btn{height:42px;width:42px;display:grid;place-items:center;border:1px solid var(--line);border-radius:12px;background:white;color:var(--ink)}
+.field-label{display:block;font-size:12px;font-weight:800;margin:0 0 7px}
+.field{width:100%;padding:13px 14px;border:1px solid #e7e0d7;border-radius:11px;background:white;font-size:13px;outline:none;transition:.2s}
+.field:focus{border-color:var(--orange);box-shadow:0 0 0 3px #ff67381c}
+.field-group{margin-bottom:17px}
+.section-kicker{font-size:10px;color:var(--orange);font-weight:900;letter-spacing:2.5px}
+.section-heading{font-size:clamp(29px,4vw,43px);font-weight:900;letter-spacing:-1.8px;line-height:1.08;margin:9px 0}
+.section-copy{color:#827b72;font-size:13px;line-height:1.9}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 10px;background:#fff0e8;color:#c8471c;font-size:10px;font-weight:900}
+.toast{position:fixed;z-index:1000;bottom:22px;right:22px;max-width:calc(100% - 44px);padding:14px 18px;border-radius:13px;background:#171512;color:white;display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;box-shadow:0 15px 45px #0003;opacity:0;transform:translateY(15px);pointer-events:none;transition:.25s}
+.toast.show{opacity:1;transform:none}
+.toast i{color:#86efac}
+.noise{pointer-events:none;position:absolute;inset:0;opacity:.1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
+
+/* AUTHENTICATION */
+#authScreen{position:fixed;inset:0;z-index:900;background:#15120f;overflow-y:auto;display:flex;color:white}
+.auth-layout{width:100%;min-height:100%;display:grid;grid-template-columns:1fr 1fr}
+.auth-art{position:relative;isolation:isolate;min-height:100vh;overflow:hidden;background:#211810;display:flex;flex-direction:column;justify-content:space-between;padding:34px 42px}
+.auth-art-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;opacity:.48}
+.auth-art-shade{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,#15110d6e,#15110deb),linear-gradient(90deg,#15110d42,transparent)}
+.auth-logo{display:flex;align-items:center;gap:11px}
+.logo-icon{width:42px;height:42px;display:grid;place-items:center;background:var(--orange);color:white;border-radius:13px;font-size:17px;flex-shrink:0}
+.brand{font-size:23px;font-weight:900;letter-spacing:-1px}
+.auth-art-content{position:relative;max-width:490px;margin:auto 0}
+.auth-pill{display:inline-flex;align-items:center;gap:9px;padding:9px 13px;border:1px solid #ffffff38;border-radius:100px;background:#ffffff0a;font-size:10px;font-weight:800;letter-spacing:1px}
+.pulse-dot{width:7px;height:7px;background:#9ee5a5;border-radius:50%;box-shadow:0 0 12px #9ee5a5}
+.auth-art-title{font-size:clamp(42px,5.3vw,74px);line-height:.98;letter-spacing:-3px;font-weight:900;margin:25px 0}
+.auth-art-title em{font-style:normal;color:var(--orange)}
+.auth-art-copy{font-size:13px;line-height:2;color:#ffffffb8;max-width:380px}
+.auth-bubble{display:flex;align-items:center;gap:11px;width:max-content;max-width:100%;background:#ffffffed;color:#171512;padding:11px 14px;border-radius:14px;margin-top:25px}
+.auth-bubble img{width:44px;height:44px;object-fit:cover;border-radius:10px}
+.auth-bubble strong{font-size:12px;display:block}
+.auth-bubble small{font-size:10px;color:#777}
+.auth-art-bottom{font-size:10px;letter-spacing:1.4px;color:#ffffffa0;display:flex;justify-content:space-between;gap:10px}
+.auth-right{display:flex;align-items:center;justify-content:center;padding:40px 28px;background:var(--cream);color:var(--ink);min-height:100vh}
+.auth-box{width:100%;max-width:430px}
+.auth-heading{font-size:36px;line-height:1.1;letter-spacing:-1.6px;font-weight:900;margin:8px 0}
+.auth-subtitle{font-size:13px;line-height:1.8;color:#827b72;margin:10px 0 22px}
+.auth-error{display:none;padding:11px 13px;border-radius:10px;background:#fff0eb;color:#b8391a;font-size:12px;line-height:1.7;margin-bottom:15px}
+.auth-error.show{display:block}
+.password-wrap{position:relative}
+.password-wrap .field{padding-right:45px}
+.password-toggle{position:absolute;right:13px;top:50%;transform:translateY(-50%);border:0;background:none;color:#898177}
+.auth-submit{width:100%;margin-top:7px;padding:15px}
+.auth-switch-row{text-align:center;color:#777067;font-size:12px;margin-top:22px;line-height:1.8}
+.auth-switch{border:0;background:none;color:var(--orange);font-weight:900;padding:0}
+.auth-switch:hover{text-decoration:underline}
+.auth-terms{display:flex;align-items:flex-start;gap:9px;font-size:11px;line-height:1.7;color:#766e65;margin:12px 0 17px}
+.auth-terms input{accent-color:var(--orange);margin-top:3px}
+.password-strength{font-size:10px;margin-top:6px;color:#a36a24}
+.auth-legal{font-size:10px;color:#a19a91;text-align:center;line-height:1.7;margin-top:22px}
+
+/* NAVIGATION AND HERO */
+.site-nav{position:sticky;top:0;z-index:70;background:#fffdf9ed;backdrop-filter:blur(18px);border-bottom:1px solid #e9e2d9}
+.nav-inner{min-height:75px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:23px}
+.nav-link{font-size:12px;font-weight:800;color:#76716a;transition:.2s}
+.nav-link:hover{color:var(--orange)}
+.nav-actions{display:flex;align-items:center;gap:9px}
+.cart-button{position:relative}
+.cart-count{position:absolute;top:-7px;right:-7px;min-width:19px;height:19px;padding:0 4px;display:grid;place-items:center;border-radius:99px;background:var(--orange);color:white;font-size:9px;font-weight:900}
+.mobile-toggle{display:none}
+.mobile-nav{display:none;padding:0 0 16px}
+.mobile-nav.open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.mobile-nav a,.mobile-nav button{padding:12px;background:#fff;border:1px solid var(--line);border-radius:10px;text-align:left;font-size:12px;font-weight:800}
+.hero{position:relative;isolation:isolate;min-height:650px;background:#15120e;color:white;overflow:hidden;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}
+.hero-overlay{position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,#100e0df2 0%,#100e0dcf 45%,#100e0d3b 100%),linear-gradient(0deg,#100e0dc4,transparent 60%)}
+.hero-glow{position:absolute;width:440px;height:440px;border-radius:50%;background:#ff67381c;filter:blur(100px);right:5%;top:5%;z-index:-1}
+.hero-content{position:relative;z-index:2;padding:85px 0;max-width:700px}
+.hero-pill{display:inline-flex;align-items:center;gap:9px;padding:9px 13px;border:1px solid #ffffff30;border-radius:100px;background:#ffffff0a;font-size:10px;font-weight:800;letter-spacing:1.3px}
+.hero-heading{font-size:clamp(48px,7vw,91px);line-height:.96;letter-spacing:-4px;font-weight:900;margin:25px 0}
+.hero-heading em{font-style:normal;color:var(--orange)}
+.hero-copy{max-width:490px;font-size:14px;line-height:2;color:#ffffffb9}
+.hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:25px}
+.hero-stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:38px}
+.hero-stat strong{display:block;font-family:"Outfit";font-size:23px}
+.hero-stat span{font-size:10px;color:#ffffff9e}
+.hero-food{position:absolute;right:6%;top:50%;transform:translateY(-45%);width:min(34vw,400px);aspect-ratio:1;border-radius:50%;border:1px solid #ffffff24;padding:12px;z-index:1}
+.hero-food:before{content:"";position:absolute;inset:-25px;border:1px dashed #ffffff35;border-radius:50%;animation:rotateRing 32s linear infinite}
+.hero-food img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:5px solid #ffffff12;box-shadow:0 35px 110px #0009}
+.hero-food-tag{position:absolute;left:-52px;bottom:12%;background:#fffaf4;color:var(--ink);padding:14px 17px;border-radius:14px;box-shadow:0 15px 50px #0003}
+.hero-food-tag strong{font-family:"Outfit";font-size:13px;display:block}
+.hero-food-tag small{font-size:10px;color:#79736b}
+@keyframes rotateRing{to{transform:rotate(360deg)}}
+
+/* CONTENT */
+main{min-height:60vh}
+.section{padding:78px 0}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:25px;margin-bottom:28px}
+.section-head p{max-width:440px}
+.category-list{display:flex;gap:9px;overflow-x:auto;padding:3px 1px 13px;scrollbar-width:thin}
+.category{white-space:nowrap;padding:11px 16px;border:1px solid #e9e2d9;background:white;border-radius:999px;font-size:12px;font-weight:800;transition:.2s}
+.category.active,.category:hover{background:#ffede4;color:#df4c21;border-color:#ffc0a4}
+.menu-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0 24px}
+.search-wrap{flex:1;min-width:200px;position:relative}
+.search-wrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#9b9288}
+.search-wrap input{padding-left:41px}
+.menu-tools select{max-width:190px}
+.food-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.food-card{min-width:0;background:white;border:1px solid #eee8e0;border-radius:18px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.food-card:hover{transform:translateY(-5px);box-shadow:0 20px 45px #2e1a0f12}
+.food-photo{height:185px;position:relative;overflow:hidden;background:#f1e9e0}
+.food-photo img{height:100%;width:100%;object-fit:cover;transition:transform .5s}
+.food-card:hover .food-photo img{transform:scale(1.06)}
+.food-photo .food-badge{position:absolute;top:10px;left:10px;background:#fffdf5ed;border-radius:8px;padding:6px 8px;font-size:9px;font-weight:900;color:#c8471c}
+.heart{position:absolute;right:10px;top:10px;width:34px;height:34px;border-radius:50%;background:#ffffffed;display:grid;place-items:center;color:#777;border:0}
+.heart.liked{color:#ef4444}
+.food-info{padding:15px}
+.food-info h3{font-size:15px;margin:0 0 6px;line-height:1.4}
+.food-restaurant{font-size:10px;color:#8b8379}
+.food-desc{font-size:10px;color:#8b8379;line-height:1.7;margin-top:9px;min-height:34px}
+.food-meta{display:flex;justify-content:space-between;gap:7px;font-size:10px;color:#8b8379;margin-top:12px}
+.food-meta .rating{color:#b87a16}
+.food-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid #f0ebe5;padding-top:12px;margin-top:12px}
+.food-bottom strong{font-size:14px}
+.food-add{height:36px;width:36px;border:0;border-radius:11px;background:var(--orange);color:white;transition:.2s}
+.food-add:hover{transform:rotate(90deg);background:#e84e20}
+.empty-state{padding:50px 20px;text-align:center;border:1px dashed #ded4c7;border-radius:18px;background:white}
 .restaurant-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.restaurant-card{border:1px solid var(--line);background:white;border-radius:18px;overflow:hidden;transition:.25s}
-.restaurant-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.restaurant-card img{width:100%;height:175px;object-fit:cover}
-.restaurant-body{padding:17px}
-.restaurant-body h3{font-family:Outfit,sans-serif;font-size:16px}
-.restaurant-body p{font-size:11px;color:var(--muted);line-height:1.7;margin:8px 0 13px}
-.restaurant-footer{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:10px}
-.restaurant-footer span{color:var(--muted)}
-.restaurant-footer strong{color:#d28a19}
-.newsletter{background:var(--ink);color:white;border-radius:24px;padding:40px;display:flex;align-items:center;justify-content:space-between;gap:25px}
-.newsletter h2{font-family:Outfit,sans-serif;font-size:clamp(25px,3vw,35px);letter-spacing:-1px}
-.newsletter p{font-size:12px;color:#bdb5aa;margin-top:9px;line-height:1.7}
-.newsletter-form{display:flex;gap:9px;width:min(100%,410px)}
-.newsletter-form input{flex:1;min-width:0;padding:14px;border-radius:11px;border:1px solid #474139;background:#25221d;color:white;font-size:12px}
-.site-footer{margin-top:60px;background:#f3ece3;padding:45px 0 20px}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:35px}
-.footer-about p{font-size:12px;line-height:1.9;color:var(--muted);max-width:270px;margin-top:15px}
-.footer-column h4{font-size:12px;margin-bottom:15px}
-.footer-column a{display:block;font-size:11px;color:#716b62;margin-bottom:12px}
-.footer-column a:hover{color:var(--orange)}
-.footer-bottom{margin-top:35px;padding-top:18px;border-top:1px solid #e4dbd0;display:flex;justify-content:space-between;gap:15px;font-size:10px;color:var(--muted);flex-wrap:wrap}
-.overlay{position:fixed;inset:0;background:rgba(14,12,10,.58);z-index:100;opacity:0;visibility:hidden;transition:.25s}
-.overlay.show{opacity:1;visibility:visible}
-.drawer{position:fixed;z-index:110;right:0;top:0;height:100dvh;width:min(440px,100%);background:var(--cream);transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-15px 0 50px rgba(0,0,0,.15)}
-.drawer.open{transform:translateX(0)}
-.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:22px;border-bottom:1px solid var(--line)}
-.drawer-head h2{font-family:Outfit,sans-serif;font-size:23px}
-.close-btn{height:39px;width:39px;border-radius:12px;background:white;border:1px solid var(--line)}
-.drawer-items{flex:1;overflow:auto;padding:18px}
-.cart-item{display:grid;grid-template-columns:75px 1fr auto;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
-.cart-item img{width:75px;height:75px;border-radius:12px;object-fit:cover;background:#eee4d8}
-.cart-item h4{font-size:12px;line-height:1.5}
-.cart-item .item-price{font-size:12px;font-weight:800;margin-top:5px}
-.quantity{display:flex;align-items:center;gap:10px;margin-top:9px}
-.quantity button{width:25px;height:25px;background:white;border:1px solid var(--line);border-radius:7px}
-.quantity span{font-size:11px;font-weight:800}
-.remove-item{background:transparent;color:#b8afa4;font-size:12px;align-self:start;padding:4px}
-.remove-item:hover{color:#d84438}
-.cart-empty{padding:60px 15px;text-align:center;color:var(--muted)}
-.cart-empty i{font-size:42px;color:#e8c2ae;margin-bottom:15px}
-.cart-empty h3{color:var(--ink);font-size:18px;margin-bottom:8px}
-.cart-empty p{font-size:12px;line-height:1.7}
-.drawer-foot{padding:20px 22px;border-top:1px solid var(--line);background:white}
-.summary-line{display:flex;justify-content:space-between;gap:10px;font-size:12px;margin-bottom:12px}
-.summary-line.muted{color:var(--muted)}
-.summary-line.total{font-weight:900;font-size:17px;padding-top:13px;border-top:1px solid var(--line);margin-top:14px}
-.drawer-foot .primary-btn{width:100%;margin-top:8px}
-.checkout-note{font-size:10px;color:var(--muted);text-align:center;margin-top:12px;line-height:1.6}
-.modal-wrap{position:fixed;inset:0;z-index:130;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(12,10,8,.65);backdrop-filter:blur(5px);overflow:auto}
-.modal-wrap.show{display:flex}
-.modal{width:min(490px,100%);background:var(--cream);border-radius:24px;padding:30px;position:relative;max-height:calc(100dvh - 36px);overflow:auto;box-shadow:0 30px 90px rgba(0,0,0,.25);animation:modalIn .25s ease}
-@keyframes modalIn{from{opacity:0;transform:translateY(15px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-.modal-close{position:absolute;top:18px;right:18px;width:37px;height:37px;border:1px solid var(--line);border-radius:11px;background:white}
-.modal h2{font-family:Outfit,sans-serif;font-size:29px;letter-spacing:-1px;margin:12px 0 7px}
-.modal-intro{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:22px}
-.form-group{margin-bottom:15px}
-.form-group label{display:block;font-size:11px;font-weight:800;margin-bottom:7px}
-.form-group input,.form-group select{width:100%;padding:14px;border:1px solid #e8dfd4;border-radius:11px;background:white;font-size:12px}
-.form-group input:focus,.form-group select:focus{border-color:var(--orange);outline:2px solid rgba(255,103,56,.12)}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.form-submit{width:100%;margin-top:6px}
-.form-switch{text-align:center;font-size:12px;color:var(--muted);margin-top:18px}
-.form-switch button{background:none;color:var(--orange);font-weight:800}
-.form-message{font-size:11px;line-height:1.6;padding:11px 12px;border-radius:10px;background:#fff0e8;color:#a73f1e;margin-bottom:14px;display:none}
-.form-message.show{display:block}
-.checkout-total{background:#fff0e8;padding:17px;border-radius:14px;margin:16px 0}
-.checkout-total span{font-size:12px;color:var(--muted)}
-.checkout-total strong{float:right;font-family:Outfit,sans-serif;font-size:21px}
-.payment-option{display:flex;gap:12px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:12px;background:white;margin-bottom:10px;font-size:12px}
-.payment-option input{accent-color:var(--orange)}
-.payment-option i{font-size:18px;color:var(--orange);width:25px;text-align:center}
-.order-success{text-align:center;padding:20px 5px}
-.success-icon{width:75px;height:75px;border-radius:50%;background:#e4f5e9;color:var(--green);display:grid;place-items:center;font-size:31px;margin:0 auto 20px}
-.order-success p{font-size:12px;line-height:1.8;color:var(--muted);margin:12px 0 22px}
-.account-panel{position:fixed;z-index:120;top:88px;right:24px;width:min(330px,calc(100% - 32px));background:white;border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:var(--shadow);display:none}
-.account-panel.show{display:block}
-.account-panel h3{font-family:Outfit,sans-serif;font-size:18px}
-.account-panel p{font-size:11px;color:var(--muted);margin:7px 0 15px;overflow-wrap:anywhere}
-.account-panel button{width:100%;margin-top:8px}
-.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);z-index:200;background:var(--ink);color:white;padding:14px 18px;border-radius:13px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;opacity:0;visibility:hidden;transition:.25s;max-width:calc(100% - 30px)}
-.toast i{color:#76d69b}
-.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
-.mobile-nav{display:none}
+.restaurant-card{background:white;border:1px solid #eee8e0;border-radius:18px;overflow:hidden;transition:.3s}
+.restaurant-card:hover{transform:translateY(-4px);box-shadow:0 20px 45px #2e1a0f10}
+.restaurant-photo{height:190px;position:relative;overflow:hidden;background:#eee5dc}
+.restaurant-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.restaurant-card:hover .restaurant-photo img{transform:scale(1.05)}
+.restaurant-info{padding:18px}
+.restaurant-info h3{font-size:20px;margin:0}
+.restaurant-info p{font-size:11px;color:#81796f;line-height:1.7}
+.restaurant-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #f0ebe5;padding-top:13px;margin-top:15px;font-size:11px}
+.promo{position:relative;isolation:isolate;overflow:hidden;border-radius:26px;background:#191611;color:white;padding:52px}
+.promo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:.35}
+.promo:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#15120ff5,#15120fc7 60%,#15120f42);z-index:-1}
+.promo h2{font-size:clamp(29px,4vw,47px);letter-spacing:-1.8px;line-height:1.1;max-width:600px;margin:13px 0}
+.promo p{font-size:13px;color:#ffffffb9;line-height:1.9;max-width:520px}
+.newsletter{display:flex;gap:9px;max-width:490px;margin-top:20px}
+.newsletter input{flex:1;min-width:0}
+footer{background:#171512;color:white;padding:48px 0 25px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+footer p,footer a{font-size:11px;line-height:2;color:#ffffff9e}
+footer h3{font-size:13px}
+.footer-bottom{border-top:1px solid #ffffff18;margin-top:32px;padding-top:18px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:10px;color:#ffffff70}
+
+/* CART, MODALS AND WALLET */
+.overlay{position:fixed;inset:0;z-index:200;background:#13110fd1;backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:16px}
+.overlay.show{display:flex}
+.panel{background:var(--cream);color:var(--ink);border-radius:22px;width:min(100%,490px);max-height:92vh;overflow:auto;padding:25px;animation:panelIn .25s}
+@keyframes panelIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.panel-header{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:22px}
+.panel-header h2{font-size:27px;letter-spacing:-1px;margin:4px 0}
+.panel-close{width:36px;height:36px;border:1px solid var(--line);border-radius:11px;background:white;flex-shrink:0}
+#cartBackdrop{position:fixed;inset:0;z-index:180;background:#13110fa8;display:none}
+#cartBackdrop.show{display:block}
+.cart-drawer{position:absolute;right:0;top:0;width:min(100%,440px);height:100%;height:100dvh;background:var(--cream);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s}
+#cartBackdrop.show .cart-drawer{transform:translateX(0)}
+.cart-head{padding:22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px}
+.cart-list{flex:1;overflow-y:auto;padding:0 22px}
+.cart-row{display:grid;grid-template-columns:65px minmax(0,1fr) auto;gap:12px;padding:14px 0;border-bottom:1px solid #e9e2d9}
+.cart-row img{height:65px;width:65px;object-fit:cover;border-radius:12px;background:#eee5dc}
+.cart-row h4{font-size:13px;margin:0 0 5px}
+.cart-row p{font-size:10px;color:#81796f;margin:0}
+.qty{display:flex;align-items:center;gap:11px;border:1px solid #e4dcd2;border-radius:999px;padding:4px 8px;width:max-content;margin-top:8px}
+.qty button{width:19px;height:19px;border:0;background:none}
+.cart-footer{padding:20px 22px;border-top:1px solid var(--line);background:#fffaf4}
+.wallet-balance{background:linear-gradient(135deg,#171512,#3a261d);color:white;border-radius:18px;padding:22px}
+.wallet-activity{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid #eee8e0;padding:12px 0;font-size:11px}
+.wallet-activity:last-child{border-bottom:0}
+.wallet-activity small{display:block;color:#8b8379;margin-top:5px}
+.wallet-positive{color:#16803d}
+.wallet-negative{color:#dc2626}
+.disclaimer{background:#fff1e7;color:#88502e;border-radius:10px;padding:11px;font-size:10px;line-height:1.7}
+.summary-row{display:flex;justify-content:space-between;gap:15px;font-size:12px;margin-bottom:12px}
+.summary-total{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.order-card{border:1px solid var(--line);border-radius:13px;background:white;padding:15px;margin-bottom:11px}
+.order-card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.order-status{background:#eaf8ee;color:#18703a;padding:6px 8px;border-radius:999px;font-size:9px;font-weight:900}
+.mobile-wallet{display:none}
+
+/* RESPONSIVENESS */
 @media(max-width:1050px){
- .desktop-nav{gap:16px}
- .desktop-nav a{font-size:12px}
- .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
- .category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
- .hero-copy{padding-left:38px}
- .hero h1{font-size:clamp(42px,5.5vw,60px)}
- .trust-strip{grid-template-columns:repeat(2,1fr)}
+.nav-links{gap:14px}
+.hero-food{right:3%;width:32vw}
+.food-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.auth-art{padding:30px}
+.auth-right{padding:32px 23px}
 }
-@media(max-width:780px){
- .container{width:min(100% - 30px,600px)}
- .header-inner{height:69px;gap:10px}
- .brand-mark{height:38px;width:38px;font-size:18px;border-radius:12px}
- .brand-name{font-size:21px}
- .brand small{font-size:8px}
- .desktop-nav{display:none}
- .mobile-menu-btn{display:flex}
- .header-actions{gap:7px}
- .account-btn{padding:12px;font-size:11px}
- .header-actions .icon-btn{height:40px;min-width:40px;padding:0 10px}
- .mobile-nav{display:flex;position:fixed;z-index:49;top:69px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--line);padding:0 18px;max-height:0;overflow:hidden;flex-direction:column;transition:max-height .25s,padding .25s}
- .mobile-nav.open{max-height:360px;padding:12px 18px 18px}
- .mobile-nav a{padding:13px 4px;border-bottom:1px solid var(--line);font-size:13px;font-weight:800}
- .mobile-nav a:last-child{border-bottom:0}
- .hero{padding:18px 0 25px}
- .hero-panel{grid-template-columns:1fr;min-height:0;border-radius:22px}
- .hero-copy{padding:35px 25px 25px}
- .hero h1{font-size:clamp(43px,10vw,64px);letter-spacing:-2.3px;margin:21px 0 15px}
- .hero-copy>p{font-size:13px}
- .hero-stats{gap:22px;margin-top:25px}
- .hero-stat strong{font-size:19px}
- .hero-visual{min-height:245px;height:245px}
- .hero-visual:before{background:linear-gradient(0deg,rgba(23,20,15,.25),transparent)}
- .hero-floating{right:13px;bottom:13px;padding:11px 13px}
- .trust-strip{gap:5px;padding:15px 0 25px}
- .trust-item{padding:7px 2px;gap:9px}
- .trust-icon{width:37px;height:37px;font-size:15px}
- .trust-item strong{font-size:11px}
- .trust-item span{font-size:9px}
- .section{padding:30px 0 40px}
- .section-head{align-items:flex-start}
- .section-head h2{font-size:29px}
- .section-head p{font-size:12px}
- .category-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
- .category-card{padding:17px 7px;border-radius:15px}
- .category-icon{width:45px;height:45px;font-size:19px;margin-bottom:10px}
- .category-card strong{font-size:11px}
- .category-card small{font-size:9px}
- .shop-toolbar{align-items:stretch}
- .search-box{max-width:none;flex-basis:100%}
- .shop-controls{width:100%;justify-content:space-between}
- .select-control{flex:1;max-width:none}
- .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
- .product-image{height:clamp(135px,34vw,205px)}
- .product-body{padding:12px}
- .product-body h3{font-size:13px;min-height:35px}
- .product-desc{font-size:10px;min-height:34px}
- .product-meta{font-size:9px;gap:4px}
- .price{font-size:16px}
- .add-btn{width:34px;height:34px;border-radius:10px}
- .promo-section{padding-bottom:40px}
- .promo-panel{grid-template-columns:1fr}
- .promo-copy{padding:28px 24px}
- .promo-image{min-height:210px;height:210px}
- .restaurant-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
- .restaurant-card img{height:135px}
- .restaurant-body{padding:13px}
- .restaurant-body h3{font-size:14px}
- .restaurant-body p{font-size:10px}
- .newsletter{padding:27px 22px;align-items:flex-start;flex-direction:column}
- .newsletter-form{width:100%}
- .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px}
- .footer-about{grid-column:1/-1}
- .site-footer{margin-top:40px}
- .account-panel{top:78px;right:15px}
+@media(max-width:800px){
+.container{width:calc(100% - 32px)}
+.nav-links{display:none}
+.mobile-toggle{display:grid}
+.nav-actions .nav-login{display:none}
+.hero{min-height:680px}
+.hero-content{padding:65px 0 220px}
+.hero-heading{letter-spacing:-2.8px}
+.hero-food{width:170px;right:28px;top:auto;bottom:28px;transform:none;padding:6px}
+.hero-food:before{inset:-12px}
+.hero-food-tag{left:-35px;bottom:5%;padding:9px 11px}
+.hero-food-tag strong{font-size:11px}
+.hero-food-tag small{font-size:8px}
+.hero-stats{gap:22px}
+.food-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.food-photo{height:165px}
+.restaurant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.auth-layout{grid-template-columns:1fr}
+.auth-art{min-height:330px;padding:22px}
+.auth-art-content{margin:40px 0 30px}
+.auth-art-title{font-size:43px;letter-spacing:-2px;margin:16px 0}
+.auth-art-copy{max-width:490px}
+.auth-bubble{display:none}
+.auth-art-bottom{margin-top:15px}
+.auth-right{min-height:auto;padding:34px 23px 45px;align-items:flex-start}
+.auth-box{max-width:500px;margin:auto}
+.auth-heading{font-size:32px}
+.footer-grid{grid-template-columns:1fr 1fr}
+.footer-about{grid-column:1/-1}
+.mobile-wallet{display:block}
 }
-@media(max-width:420px){
- .container{width:calc(100% - 24px)}
- .brand-name{font-size:19px}
- .brand small{letter-spacing:1.5px}
- .header-actions{gap:5px}
- .account-btn{padding:11px 9px}
- .hero-copy{padding:28px 19px 22px}
- .hero h1{font-size:42px}
- .hero-label{font-size:9px}
- .hero-actions{gap:8px}
- .hero-actions .primary-btn,.hero-actions .secondary-btn{padding:12px 13px;font-size:11px}
- .hero-stats{gap:15px}
- .hero-stat strong{font-size:17px}
- .trust-item{align-items:flex-start}
- .trust-icon{width:32px;height:32px;font-size:13px;border-radius:10px}
- .trust-item strong{font-size:10px}
- .trust-item span{font-size:8px}
- .category-grid{gap:7px}
- .category-card{padding:14px 4px}
- .category-icon{height:39px;width:39px;font-size:17px}
- .category-card strong{font-size:10px}
- .product-grid{gap:9px}
- .product-image .badge{font-size:8px;padding:6px 7px}
- .product-image .favorite{width:29px;height:29px}
- .product-body{padding:10px}
- .product-body h3{font-size:12px}
- .product-desc{font-size:9px}
- .price{font-size:15px}
- .product-bottom{margin-top:12px}
- .restaurant-grid{grid-template-columns:1fr 1fr}
- .restaurant-card img{height:115px}
- .restaurant-body h3{font-size:12px}
- .restaurant-footer{font-size:9px}
- .form-grid{grid-template-columns:1fr}
- .modal{padding:24px 19px}
- .newsletter-form{flex-direction:column}
- .newsletter-form .primary-btn{width:100%}
- .footer-grid{gap:24px 14px}
+@media(max-width:520px){
+.container{width:calc(100% - 28px)}
+.nav-inner{min-height:66px;gap:9px}
+.brand{font-size:20px}
+.logo-icon{height:37px;width:37px}
+.nav-actions{gap:6px}
+.nav-actions .icon-btn{height:38px;width:38px}
+.hero{min-height:690px}
+.hero-content{padding:52px 0 230px}
+.hero-heading{font-size:clamp(44px,12vw,62px);letter-spacing:-2.5px;margin:22px 0}
+.hero-copy{font-size:12px}
+.hero-food{width:145px;right:21px;bottom:29px}
+.hero-food-tag{left:-28px}
+.hero-stats{gap:17px;margin-top:28px}
+.hero-stat strong{font-size:20px}
+.hero-stat span{font-size:9px}
+.section{padding:55px 0}
+.section-head{display:block;margin-bottom:21px}
+.section-head p{margin-bottom:0}
+.section-heading{font-size:31px}
+.menu-tools{gap:8px}
+.search-wrap{flex-basis:100%}
+.menu-tools select{flex:1;max-width:none}
+.food-grid{gap:10px}
+.food-photo{height:135px}
+.food-info{padding:11px}
+.food-info h3{font-size:12px}
+.food-desc{font-size:9px;min-height:0}
+.food-meta{font-size:9px;flex-wrap:wrap}
+.food-bottom strong{font-size:12px}
+.food-add{width:32px;height:32px}
+.restaurant-grid{grid-template-columns:1fr}
+.restaurant-photo{height:190px}
+.promo{padding:29px 20px;border-radius:20px}
+.promo h2{font-size:31px}
+.newsletter{flex-direction:column}
+.newsletter .btn{width:100%}
+.auth-art{min-height:290px;padding:19px}
+.auth-art-title{font-size:37px}
+.auth-art-copy{font-size:11px}
+.auth-right{padding:29px 20px 38px}
+.auth-heading{font-size:29px}
+.auth-logo{margin-bottom:27px}
+.panel{padding:19px;border-radius:18px}
+.panel-header h2{font-size:24px}
+.cart-head{padding:17px}
+.cart-list{padding:0 17px}
+.cart-footer{padding:17px}
+.cart-row{grid-template-columns:57px minmax(0,1fr) auto;gap:9px}
+.cart-row img{width:57px;height:57px}
+.footer-grid{grid-template-columns:1fr 1fr;gap:25px}
+.footer-bottom{font-size:9px}
+.toast{right:14px;bottom:14px}
 }
 @media(prefers-reduced-motion:reduce){
- *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
 </style>
 </head>
 <body>
 
-<header class="site-header">
- <div class="container header-inner">
-  <a href="#home" class="brand" aria-label="ERRANDGO home">
-   <span class="brand-mark"><i class="fa-solid fa-basket-shopping"></i></span>
-   <span><span class="brand-name">ERRAND<span>GO</span></span><small>CRAVE MORE</small></span>
-  </a>
-  <nav class="desktop-nav" aria-label="Main navigation">
-   <a class="active" href="#home">Home</a>
-   <a href="#categories">Categories</a>
-   <a href="#shop">Shop ingredients</a>
-   <a href="#restaurants">Stores</a>
-  </nav>
-  <div class="header-actions">
-   <button class="icon-btn" id="accountButton" aria-label="My account" title="My account"><i class="fa-regular fa-user"></i></button>
-   <button class="icon-btn" id="cartButton" aria-label="Open cart"><i class="fa-solid fa-basket-shopping"></i><span class="cart-count" id="cartCount">0</span></button>
-   <button class="account-btn" id="headerAuthButton">Sign in</button>
-   <button class="icon-btn mobile-menu-btn" id="mobileMenuButton" aria-label="Open navigation menu"><i class="fa-solid fa-bars"></i></button>
-  </div>
- </div>
+<!-- LOGIN AND SIGN-UP ARE SHOWN BEFORE THE WEBSITE -->
+<section id="authScreen" aria-label="ERRANDGO account access">
+<div class="auth-layout">
+<div class="auth-art">
+<img class="auth-art-bg" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1400&q=80" alt="">
+<div class="auth-art-shade"></div>
+<div class="noise"></div>
+<a href="#" class="auth-logo" onclick="return false">
+<span class="logo-icon"><i class="fa-solid fa-bowl-food"></i></span>
+<span class="brand">ERRANNGO<span class="orange">.</span></span>
+</a>
+<div class="auth-art-content">
+<div class="auth-pill"><span class="pulse-dot"></span> YOUR NEXT CRAVING STARTS HERE</div>
+<h1 class="auth-art-title">Life's too short<br>for <em>boring food.</em></h1>
+<p class="auth-art-copy">Shop Nigerian foodstuffs, discover fresh ingredients, compare products and keep your kitchen stocked with essentials.</p>
+<div class="auth-bubble">
+<img src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?auto=format&fit=crop&w=150&q=80" alt="Food">
+<div><strong>Something delicious awaits.</strong><small>Good food is always a good idea.</small></div>
+<i class="fa-solid fa-heart orange"></i>
+</div>
+</div>
+<div class="auth-art-bottom"><span>GOOD FOOD. GREAT MOOD.</span><span>MADE FOR FOOD LOVERS.</span></div>
+</div>
+
+<div class="auth-right">
+<div class="auth-box">
+<div class="auth-logo">
+<span class="logo-icon"><i class="fa-solid fa-bowl-food"></i></span>
+<div><div class="brand">ERRANNGO<span class="orange">.</span></div><div style="font-size:9px;letter-spacing:2px;color:#a19a91;font-weight:900;margin-top:3px">YOUR FOOD JOURNEY</div></div>
+</div>
+<div class="section-kicker" id="authKicker">WELCOME BACK</div>
+<h2 class="auth-heading" id="authTitle">Good to see you.</h2>
+<p class="auth-subtitle" id="authSubtitle">Sign in to access your ERRANDGO account.</p>
+<div class="auth-error" id="authError" role="alert"></div>
+
+<form id="authForm" onsubmit="submitAuth(event)">
+<div class="field-group hidden" id="authNameWrap">
+<label class="field-label" for="authName">Full name *</label>
+<input class="field" id="authName" type="text" autocomplete="name" placeholder="Enter your full name" minlength="2">
+</div>
+<div class="field-group">
+<label class="field-label" for="authEmail">Email address *</label>
+<input class="field" id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+</div>
+<div class="field-group hidden" id="authPhoneWrap">
+<label class="field-label" for="authPhone">Phone number *</label>
+<input class="field" id="authPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g. 08012345678">
+</div>
+<div class="field-group">
+<label class="field-label" for="authPassword">Password *</label>
+<div class="password-wrap">
+<input class="field" id="authPassword" type="password" autocomplete="current-password" placeholder="Enter your password" minlength="6" required>
+<button type="button" class="password-toggle" onclick="togglePassword('authPassword',this)" aria-label="Show or hide password"><i class="fa-regular fa-eye"></i></button>
+</div>
+<div id="passwordStrength" class="password-strength hidden"></div>
+</div>
+<div class="field-group hidden" id="authConfirmWrap">
+<label class="field-label" for="authConfirm">Confirm password *</label>
+<div class="password-wrap">
+<input class="field" id="authConfirm" type="password" autocomplete="new-password" placeholder="Enter your password again">
+<button type="button" class="password-toggle" onclick="togglePassword('authConfirm',this)" aria-label="Show or hide confirm password"><i class="fa-regular fa-eye"></i></button>
+</div>
+</div>
+<div class="flex-row" style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin:3px 0 17px">
+<label id="rememberWrap" style="display:flex;align-items:center;gap:7px;font-size:11px;color:#777067"><input id="rememberMe" type="checkbox" style="accent-color:var(--orange)"> Remember me</label>
+<button type="button" id="forgotButton" class="auth-switch" onclick="forgotPassword()">Forgot password?</button>
+</div>
+<label class="auth-terms hidden" id="termsWrap">
+<input id="authTerms" type="checkbox">
+<span>I agree to the demo terms and understand that this prototype stores account information in this browser.</span>
+</label>
+<button type="submit" class="btn auth-submit" id="authSubmit">Sign in <i class="fa-solid fa-arrow-right"></i></button>
+</form>
+
+<div class="auth-switch-row">
+<span id="authSwitchText">New to ERRANNGO?</span>
+<button type="button" class="auth-switch" id="authSwitch" onclick="switchAuth()">Create your account</button>
+</div>
+<div class="auth-legal">Your account is saved in this browser for this prototype. For a production website, use secure server-side authentication.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MAIN WEBSITE: HIDDEN UNTIL LOGIN -->
+<div id="website" class="hidden">
+
+<header class="site-nav">
+<div class="container nav-inner">
+<a href="#home" class="nav-brand">
+<span class="logo-icon"><i class="fa-solid fa-bowl-food"></i></span>
+<span class="brand">ERRANNGO<span class="orange">.</span></span>
+</a>
+<nav class="nav-links" aria-label="Main navigation">
+<a class="nav-link" href="#home">Home</a>
+<a class="nav-link" href="#menu">Foodstuffs</a>
+<a class="nav-link" href="#restaurants">Markets</a>
+<a class="nav-link" href="#about">About</a>
+</nav>
+<div class="nav-actions">
+<button class="icon-btn cart-button" onclick="openCart()" aria-label="Open basket"><i class="fa-solid fa-basket-shopping"></i><span class="cart-count" id="cartCount">0</span></button>
+<button class="icon-btn" onclick="openWallet()" aria-label="Open wallet"><i class="fa-solid fa-wallet"></i></button>
+<button class="btn nav-login" id="navAccount" onclick="showAccountMenu()">Account</button>
+<button class="icon-btn mobile-toggle" onclick="toggleMobile()" aria-label="Open navigation"><i class="fa-solid fa-bars"></i></button>
+</div>
+</div>
+<div class="container mobile-nav" id="mobileNav">
+<a href="#home" onclick="toggleMobile(true)">Home</a>
+<a href="#menu" onclick="toggleMobile(true)">Foodstuffs</a>
+<a href="#restaurants" onclick="toggleMobile(true)">Markets</a>
+<button onclick="openWallet();toggleMobile(true)">My wallet</button>
+<button onclick="showOrders();toggleMobile(true)">My orders</button>
+<button onclick="showAccountMenu();toggleMobile(true)">Account / Log out</button>
+</div>
 </header>
 
-<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
- <a href="#home">Home</a>
- <a href="#categories">Categories</a>
- <a href="#shop">Shop ingredients</a>
- <a href="#restaurants">Stores</a>
- <a href="#newsletter">Get updates</a>
-</nav>
+<section class="hero" id="home">
+<img class="hero-bg" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=2000&q=85" alt="">
+<div class="hero-overlay"></div><div class="hero-glow"></div><div class="noise"></div>
+<div class="container">
+<div class="hero-content">
+<div class="hero-pill"><span class="pulse-dot"></span> FRESH FOODSTUFFS, DELIVERED</div>
+<h1 class="hero-heading">Your kitchen.<br>Your rules.<br><em>Fresh every day.</em></h1>
+<p class="hero-copy">Discover fresh Nigerian ingredients, shop your everyday food essentials and find products for the meals you love. Your next great meal starts here.</p>
+<div class="hero-actions">
+<a href="#menu" class="btn">Explore foodstuffs <i class="fa-solid fa-arrow-right"></i></a>
+<button class="btn btn-light" onclick="openWallet()"><i class="fa-solid fa-wallet"></i> My wallet</button>
+</div>
+<div class="hero-stats">
+<div class="hero-stat"><strong>35+</strong><span>Food essentials</span></div>
+<div class="hero-stat"><strong>Fresh</strong><span>Kitchen ingredients</span></div>
+<div class="hero-stat"><strong>₦</strong><span>Naira pricing</span></div>
+</div>
+</div>
+</div>
+<div class="hero-food">
+<img src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?auto=format&fit=crop&w=900&q=85" alt="Delicious food">
+<div class="hero-food-tag"><strong>Good food, good mood.</strong><small>Shop your kitchen essentials</small></div>
+</div>
+</section>
 
 <main>
-<section class="hero" id="home">
- <div class="container">
-  <div class="hero-panel">
-   <div class="hero-copy">
-    <span class="hero-label"><i class="fa-solid fa-sparkles"></i> YOUR KITCHEN, DELIVERED</span>
-    <h1>Fresh finds.<br>Better meals.<br><span>Less stress.</span></h1>
-    <p>Your favourite Nigerian food ingredients, pantry essentials and fresh produce — all in one place. Shop smarter and get back to what matters.</p>
-    <div class="hero-actions">
-     <a href="#shop" class="primary-btn">Shop ingredients <i class="fa-solid fa-arrow-right"></i></a>
-     <a href="#categories" class="secondary-btn">Explore categories</a>
-    </div>
-    <div class="hero-stats">
-     <div class="hero-stat"><strong>35+</strong><span>Fresh essentials</span></div>
-     <div class="hero-stat"><strong>Easy</strong><span>Online shopping</span></div>
-     <div class="hero-stat"><strong>Naija</strong><span>Local favourites</span></div>
-    </div>
-   </div>
-   <div class="hero-visual">
-    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1400&q=80" alt="Fresh food and ingredients" onerror="this.style.display='none'">
-    <div class="hero-floating">
-     <span class="float-icon"><i class="fa-solid fa-leaf"></i></span>
-     <span><strong>Freshness first</strong><small>Everyday kitchen essentials</small></span>
-    </div>
-   </div>
-  </div>
- </div>
+<section class="section" id="menu">
+<div class="container">
+<div class="section-head">
+<div><div class="section-kicker">YOUR KITCHEN STARTS HERE</div><h2 class="section-heading">Shop the good stuff.</h2></div>
+<p class="section-copy">From fresh produce to pantry staples, discover ingredients for everyday Nigerian cooking.</p>
+</div>
+<div class="category-list" id="categoryList"></div>
+<div class="menu-tools">
+<div class="search-wrap"><i class="fa-solid fa-magnifying-glass"></i><input class="field" id="searchFood" type="search" placeholder="Search foodstuffs, ingredients..." oninput="renderFoods()"></div>
+<select class="field" id="sortFood" onchange="renderFoods()" aria-label="Sort foodstuffs">
+<option value="default">Sort: Recommended</option>
+<option value="low">Price: Low to high</option>
+<option value="high">Price: High to low</option>
+<option value="rating">Highest rated</option>
+</select>
+<button class="btn btn-light" onclick="resetFood()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+</div>
+<div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin:0 0 15px">
+<span style="font-size:11px;color:#8b8379"><strong id="foodCount">0</strong> products found</span>
+<span style="font-size:10px;color:#8b8379">Prices shown in Nigerian naira</span>
+</div>
+<div class="food-grid" id="foodGrid"></div>
+<div class="empty-state hidden" id="emptyFoods">
+<i class="fa-solid fa-basket-shopping orange" style="font-size:30px"></i>
+<h3>No foodstuffs found</h3><p class="section-copy">Try a different search or category.</p>
+<button class="btn" onclick="resetFood()">Show all products</button>
+</div>
+</div>
 </section>
 
-<section class="container trust-strip" aria-label="Shopping benefits">
- <div class="trust-item"><span class="trust-icon"><i class="fa-solid fa-seedling"></i></span><span><strong>Fresh ingredients</strong><span>Everyday essentials</span></span></div>
- <div class="trust-item"><span class="trust-icon"><i class="fa-solid fa-basket-shopping"></i></span><span><strong>Easy shopping</strong><span>Everything in one basket</span></span></div>
- <div class="trust-item"><span class="trust-icon"><i class="fa-solid fa-shield-halved"></i></span><span><strong>Safe checkout demo</strong><span>Review before ordering</span></span></div>
- <div class="trust-item"><span class="trust-icon"><i class="fa-solid fa-heart"></i></span><span><strong>Made for Naija</strong><span>Local cooking favourites</span></span></div>
+<section class="section" id="restaurants" style="background:#f5eee5">
+<div class="container">
+<div class="section-head">
+<div><div class="section-kicker">MEET YOUR MARKET</div><h2 class="section-heading">Find your favourites.</h2></div>
+<p class="section-copy">Explore vendors and discover ingredients for your next meal.</p>
+</div>
+<div class="restaurant-grid" id="restaurantGrid"></div>
+</div>
 </section>
 
-<section class="section container" id="categories">
- <div class="section-head">
-  <div><span class="eyebrow">Find your favourites</span><h2>Shop by category</h2><p>Find the ingredients you need for your next meal.</p></div>
-  <a class="text-link" href="#shop">View all ingredients <i class="fa-solid fa-arrow-right"></i></a>
- </div>
- <div class="category-grid">
-  <button class="category-card" data-category="Vegetables"><span class="category-icon"><i class="fa-solid fa-carrot"></i></span><strong>Vegetables</strong><small>Fresh from the farm</small></button>
-  <button class="category-card" data-category="Tubers"><span class="category-icon"><i class="fa-solid fa-leaf"></i></span><strong>Tubers</strong><small>Yam, cassava and more</small></button>
-  <button class="category-card" data-category="Grains"><span class="category-icon"><i class="fa-solid fa-wheat-awn"></i></span><strong>Grains</strong><small>Rice, beans and garri</small></button>
-  <button class="category-card" data-category="Soup ingredients"><span class="category-icon"><i class="fa-solid fa-bowl-food"></i></span><strong>Soup ingredients</strong><small>For rich Nigerian soups</small></button>
-  <button class="category-card" data-category="Protein"><span class="category-icon"><i class="fa-solid fa-drumstick-bite"></i></span><strong>Protein</strong><small>Meat, fish and eggs</small></button>
-  <button class="category-card" data-category="Oils"><span class="category-icon"><i class="fa-solid fa-bottle-droplet"></i></span><strong>Oils</strong><small>Kitchen cooking oils</small></button>
- </div>
+<section class="section" id="about">
+<div class="container">
+<div class="promo">
+<img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1500&q=85" alt="">
+<div class="section-kicker">THE ERRANDGO EXPERIENCE</div>
+<h2>Less time searching.<br>More time cooking.</h2>
+<p>Keep your favourite food essentials in one place. Build your basket, review your order, and manage your demo wallet from your account.</p>
+<button class="btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Start shopping <i class="fa-solid fa-arrow-right"></i></button>
+</div>
+</div>
 </section>
 
-<section class="section shop-section container" id="shop">
- <div class="section-head">
-  <div><span class="eyebrow">The ingredient market</span><h2>Stock your kitchen</h2><p>Explore your ingredients and add what you need to your basket.</p></div>
- </div>
- <div class="shop-toolbar">
-  <label class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="search" id="searchInput" placeholder="Search tomatoes, rice, pepper..." aria-label="Search ingredients"></label>
-  <div class="shop-controls">
-   <span class="result-count" id="resultCount">35 ingredients</span>
-   <select class="select-control" id="categoryFilter" aria-label="Filter by category">
-    <option value="All">All categories</option>
-    <option value="Vegetables">Vegetables</option>
-    <option value="Tubers">Tubers</option>
-    <option value="Grains">Grains</option>
-    <option value="Soup ingredients">Soup ingredients</option>
-    <option value="Protein">Protein</option>
-    <option value="Oils">Oils</option>
-   </select>
-   <select class="select-control" id="sortFilter" aria-label="Sort ingredients">
-    <option value="default">Sort: Featured</option>
-    <option value="low">Price: Low to high</option>
-    <option value="high">Price: High to low</option>
-    <option value="az">Name: A to Z</option>
-   </select>
-  </div>
- </div>
- <div class="product-grid" id="productGrid"></div>
-</section>
-
-<section class="promo-section container">
- <div class="promo-panel">
-  <div class="promo-copy">
-   <span class="eyebrow">Make cooking easier</span>
-   <h2>Your kitchen deserves the good stuff.</h2>
-   <p>From everyday staples to the ingredients that make your favourite local dishes special, build your basket in just a few clicks.</p>
-   <a href="#shop" class="primary-btn">Build your basket <i class="fa-solid fa-arrow-right"></i></a>
-  </div>
-  <div class="promo-image">
-   <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1500&q=85" alt="A delicious meal made with fresh ingredients" onerror="this.classList.add('image-broken')">
-  </div>
- </div>
-</section>
-
-<section class="section container" id="restaurants">
- <div class="section-head">
-  <div><span class="eyebrow">Our marketplace</span><h2>Explore our stores</h2><p>Discover different kinds of kitchen essentials in one place.</p></div>
- </div>
- <div class="restaurant-grid" id="restaurantGrid"></div>
-</section>
-
-<section class="container" id="newsletter">
- <div class="newsletter">
-  <div><h2>Good food starts here.</h2><p>Get updates about new ingredients and marketplace offers.</p></div>
-  <form class="newsletter-form" id="newsletterForm">
-   <input type="email" id="newsletterEmail" placeholder="Enter your email address" aria-label="Email address" required>
-   <button class="primary-btn" type="submit">Join the list <i class="fa-solid fa-arrow-right"></i></button>
-  </form>
- </div>
+<section class="section" style="padding-top:0">
+<div class="container">
+<div class="section-head">
+<div><div class="section-kicker">STAY IN THE LOOP</div><h2 class="section-heading">Fresh updates, occasionally.</h2></div>
+<p class="section-copy">Join our demo newsletter for product updates and new features.</p>
+</div>
+<form class="newsletter" onsubmit="subscribe(event)">
+<input class="field" type="email" placeholder="Enter your email address" required>
+<button class="btn" type="submit">Join the list <i class="fa-solid fa-arrow-right"></i></button>
+</form>
+</div>
 </section>
 </main>
 
-<footer class="site-footer">
- <div class="container">
-  <div class="footer-grid">
-   <div class="footer-about">
-    <a href="#home" class="brand"><span class="brand-mark"><i class="fa-solid fa-basket-shopping"></i></span><span><span class="brand-name">ERRAND<span>GO</span></span><small>CRAVE MORE</small></span></a>
-    <p>Your everyday marketplace for Nigerian food ingredients, pantry essentials and kitchen favourites.</p>
-   </div>
-   <div class="footer-column"><h4>Explore</h4><a href="#home">Home</a><a href="#categories">Categories</a><a href="#shop">Shop ingredients</a><a href="#restaurants">Stores</a></div>
-   <div class="footer-column"><h4>Your account</h4><a href="#" id="footerSignIn">Sign in</a><a href="#" id="footerCart">Your basket</a><a href="#shop">Continue shopping</a></div>
-   <div class="footer-column"><h4>Help & information</h4><a href="#newsletter">Get updates</a><a href="#shop">Browse products</a><a href="#home">About ERRANDGO</a></div>
-  </div>
-  <div class="footer-bottom"><span>© <span id="currentYear"></span> ERRANDGO. All rights reserved.</span><span>Made for everyday Nigerian cooking.</span></div>
- </div>
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-about">
+<a href="#home" class="nav-brand"><span class="logo-icon"><i class="fa-solid fa-bowl-food"></i></span><span class="brand">ERRANNGO<span class="orange">.</span></span></a>
+<p style="max-width:340px">Your food journey starts here. Explore Nigerian foodstuffs, organise your basket and get ready for your next home-cooked meal.</p>
+</div>
+<div><h3>Explore</h3><p><a href="#home">Home</a><br><a href="#menu">Foodstuffs</a><br><a href="#restaurants">Markets</a></p></div>
+<div><h3>Your account</h3><p><a href="#" onclick="openWallet();return false">My wallet</a><br><a href="#" onclick="showOrders();return false">My orders</a><br><a href="#" onclick="showAccountMenu();return false">Account</a></p></div>
+</div>
+<div class="footer-bottom"><span>© <span id="year"></span> ERRANNGO. All rights reserved.</span><span>Demo storefront · Demo wallet · No real payments processed</span></div>
+</div>
 </footer>
-
-<div class="overlay" id="overlay"></div>
-<aside class="drawer" id="cartDrawer" aria-label="Shopping basket" aria-hidden="true">
- <div class="drawer-head"><h2>Your basket <span id="cartTitleCount">(0)</span></h2><button class="close-btn" id="closeCart" aria-label="Close basket"><i class="fa-solid fa-xmark"></i></button></div>
- <div class="drawer-items" id="cartItems"></div>
- <div class="drawer-foot" id="cartFooter">
-  <div class="summary-line"><span>Subtotal</span><strong id="cartSubtotal">₦0</strong></div>
-  <div class="summary-line muted"><span>Delivery estimate</span><span id="deliveryFee">₦1,000</span></div>
-  <div class="summary-line total"><span>Total</span><strong id="cartTotal">₦0</strong></div>
-  <button class="primary-btn" id="checkoutButton">Continue to checkout <i class="fa-solid fa-arrow-right"></i></button>
-  <p class="checkout-note">Demo checkout only. No real payment will be collected.</p>
- </div>
-</aside>
-
-<div class="modal-wrap" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
- <div class="modal">
-  <button class="modal-close" data-close-modal aria-label="Close sign in"><i class="fa-solid fa-xmark"></i></button>
-  <span class="eyebrow">Welcome to ERRANDGO</span>
-  <h2 id="authTitle">Welcome back.</h2>
-  <p class="modal-intro" id="authDescription">Sign in to continue shopping.</p>
-  <div class="form-message" id="authMessage"></div>
-  <form id="authForm">
-   <div id="signupNameGroup" class="form-group hidden"><label for="authName">Full name</label><input id="authName" type="text" autocomplete="name" placeholder="Your full name"></div>
-   <div class="form-group"><label for="authEmail">Email address</label><input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required></div>
-   <div class="form-group"><label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password" placeholder="At least 6 characters" minlength="6" required></div>
-   <button class="primary-btn form-submit" id="authSubmit" type="submit">Sign in <i class="fa-solid fa-arrow-right"></i></button>
-  </form>
-  <p class="form-switch"><span id="authSwitchText">New to ERRANDGO?</span> <button id="authSwitchButton" type="button">Create an account</button></p>
-  <p class="checkout-note">Demo account data is saved in this browser only. It is not a secure production authentication system.</p>
- </div>
 </div>
 
-<div class="modal-wrap" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
- <div class="modal">
-  <button class="modal-close" data-close-modal aria-label="Close checkout"><i class="fa-solid fa-xmark"></i></button>
-  <div id="checkoutFormView">
-   <span class="eyebrow">Almost there</span>
-   <h2 id="checkoutTitle">Checkout.</h2>
-   <p class="modal-intro">Enter your delivery details and review your order. This is a demonstration checkout.</p>
-   <div class="form-message" id="checkoutMessage"></div>
-   <form id="checkoutForm">
-    <div class="form-group"><label for="deliveryName">Full name</label><input id="deliveryName" required autocomplete="name" placeholder="Name of recipient"></div>
-    <div class="form-group"><label for="deliveryPhone">Phone number</label><input id="deliveryPhone" type="tel" required autocomplete="tel" placeholder="e.g. 08012345678"></div>
-    <div class="form-group"><label for="deliveryAddress">Delivery address</label><input id="deliveryAddress" required autocomplete="street-address" placeholder="House number, street and area"></div>
-    <div class="form-grid">
-     <div class="form-group"><label for="deliveryCity">City</label><input id="deliveryCity" required placeholder="e.g. Lagos"></div>
-     <div class="form-group"><label for="deliveryState">State</label><select id="deliveryState" required><option value="">Select state</option><option>Lagos</option><option>Ogun</option><option>Oyo</option><option>Abuja</option><option>Rivers</option><option>Enugu</option><option>Kaduna</option><option>Kano</option><option>Other</option></select></div>
-    </div>
-    <p style="font-size:11px;font-weight:800;margin:16px 0 10px">Choose demo payment method</p>
-    <label class="payment-option"><input type="radio" name="paymentMethod" value="Pay on delivery" checked><i class="fa-solid fa-truck-fast"></i><span>Pay on delivery <br><small style="color:var(--muted)">Demo selection</small></span></label>
-    <label class="payment-option"><input type="radio" name="paymentMethod" value="Bank transfer demo"><i class="fa-solid fa-building-columns"></i><span>Bank transfer <br><small style="color:var(--muted)">Demo only — no transfer is made</small></span></label>
-    <div class="checkout-total"><span>Order total</span><strong id="checkoutTotal">₦0</strong></div>
-    <button class="primary-btn form-submit" type="submit">Place demo order <i class="fa-solid fa-arrow-right"></i></button>
-    <p class="checkout-note">No money is collected. Real payment processing is not connected.</p>
-   </form>
-  </div>
-  <div id="checkoutSuccessView" class="order-success hidden">
-   <span class="success-icon"><i class="fa-solid fa-check"></i></span>
-   <h2>Order received!</h2>
-   <p id="orderSuccessText">Your demo order has been saved in this browser.</p>
-   <button class="primary-btn" id="finishOrderButton">Continue shopping</button>
-  </div>
- </div>
+<!-- BASKET DRAWER -->
+<div id="cartBackdrop" onclick="if(event.target===this)closeCart()">
+<div class="cart-drawer">
+<div class="cart-head">
+<div><div class="section-kicker">YOUR BASKET</div><h2 style="margin:5px 0;font-size:25px">Your good stuff <span id="drawerCount" style="font-size:13px;color:#8b8379">(0)</span></h2></div>
+<button class="panel-close" onclick="closeCart()" aria-label="Close basket"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="cart-list" id="cartItems"></div>
+<div class="cart-footer" id="cartFooter"></div>
+</div>
 </div>
 
-<div class="account-panel" id="accountPanel">
- <h3 id="accountPanelTitle">Your account</h3>
- <p id="accountPanelEmail">Sign in to view your account.</p>
- <button class="secondary-btn" id="accountPanelAction">Sign in</button>
- <button class="secondary-btn hidden" id="signOutButton">Sign out</button>
+<!-- WALLET MODAL -->
+<div class="overlay" id="walletModal" onclick="if(event.target===this)closeWallet()">
+<div class="panel">
+<div class="panel-header">
+<div><div class="section-kicker">ERRANDGO WALLET</div><h2>Your wallet.</h2><p class="section-copy" style="margin:5px 0 0">Manage your demo balance and wallet activity.</p></div>
+<button class="panel-close" onclick="closeWallet()" aria-label="Close wallet"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="wallet-balance">
+<div style="font-size:10px;letter-spacing:1.3px;color:#ffffff9c;font-weight:900">AVAILABLE DEMO BALANCE</div>
+<div id="walletBalance" style="font-family:Outfit;font-size:36px;font-weight:900;margin-top:9px">₦0</div>
+<div style="font-size:10px;color:#ffffff9c;margin-top:8px">Stored in this browser for demonstration only</div>
+</div>
+<div style="margin-top:23px">
+<h3 style="font-size:15px;margin-bottom:6px">Add money to wallet</h3>
+<p class="section-copy" style="font-size:11px;margin-top:0">This button simulates a top-up. It does not verify bank transfers or move real money.</p>
+<label class="field-label" for="walletAmount">Amount to add (₦)</label>
+<input class="field" id="walletAmount" type="number" min="500" step="100" placeholder="Enter amount, e.g. 10000">
+<button class="btn" style="width:100%;margin-top:11px" onclick="simulateWalletTopup()"><i class="fa-solid fa-wallet"></i> Simulate wallet top-up</button>
+</div>
+<div class="disclaimer" style="margin-top:15px"><strong>Important:</strong> Do not transfer real money to any account based on this demo. Real deposits and payments require a payment provider and server-side verification.</div>
+<div style="margin-top:22px">
+<h3 style="font-size:15px;margin-bottom:5px">Recent wallet activity</h3>
+<div id="walletHistory"></div>
+</div>
+</div>
 </div>
 
-<div class="toast" id="toast" role="status" aria-live="polite"><i class="fa-solid fa-circle-check"></i><span id="toastText">Added to basket</span></div>
+<!-- CHECKOUT MODAL -->
+<div class="overlay" id="checkoutModal" onclick="if(event.target===this)closeCheckout()">
+<div class="panel">
+<div class="panel-header">
+<div><div class="section-kicker">ALMOST THERE</div><h2>Delivery details.</h2><p class="section-copy" style="margin:5px 0 0">Enter where your order should go.</p></div>
+<button class="panel-close" onclick="closeCheckout()" aria-label="Close checkout"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<form id="checkoutForm" onsubmit="placeOrder(event)">
+<div class="field-group"><label class="field-label" for="deliveryName">Full name *</label><input class="field" id="deliveryName" required minlength="2" placeholder="Name of recipient"></div>
+<div class="field-group"><label class="field-label" for="deliveryPhone">Phone number *</label><input class="field" id="deliveryPhone" type="tel" required minlength="7" placeholder="Phone number for delivery"></div>
+<div class="field-group"><label class="field-label" for="deliveryAddress">Delivery address *</label><textarea class="field" id="deliveryAddress" rows="3" required placeholder="House number, street and area"></textarea></div>
+<div class="field-group"><label class="field-label" for="deliveryState">State *</label>
+<select class="field" id="deliveryState" required>
+<option value="">Select state</option>
+<option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option><option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option><option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option><option>Ekiti</option><option>Enugu</option><option>FCT Abuja</option><option>Gombe</option><option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option><option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option><option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option><option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option><option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option><option>Zamfara</option>
+</select></div>
+<div class="field-group"><label class="field-label" for="paymentMethod">Payment method *</label>
+<select class="field" id="paymentMethod" required>
+<option value="ERRANDGO Demo Wallet">ERRANDGO Demo Wallet</option>
+</select>
+</div>
+<div style="background:white;border:1px solid var(--line);padding:15px;border-radius:13px;margin-bottom:18px">
+<h3 style="font-size:13px;margin:0 0 13px">Order summary</h3>
+<div id="checkoutSummary"></div>
+</div>
+<div class="disclaimer" style="margin-bottom:15px">Demo checkout only. No real payment will be processed and no real delivery is arranged.</div>
+<button type="submit" class="btn" style="width:100%">Place demo order <i class="fa-solid fa-arrow-right"></i></button>
+</form>
+</div>
+</div>
+
+<!-- ORDER SUCCESS MODAL -->
+<div class="overlay" id="successModal" onclick="if(event.target===this)closeSuccess()">
+<div class="panel" style="text-align:center">
+<div style="height:66px;width:66px;border-radius:50%;background:#e6f7e9;color:#16803d;display:grid;place-items:center;font-size:27px;margin:0 auto 17px"><i class="fa-solid fa-check"></i></div>
+<div class="section-kicker">ORDER CREATED</div>
+<h2 style="font-size:29px;margin:8px 0">You're all set!</h2>
+<p class="section-copy">Your demo order has been saved in this browser.</p>
+<div id="successDetails" style="text-align:left;background:white;border:1px solid var(--line);padding:16px;border-radius:13px;margin:20px 0"></div>
+<button class="btn" style="width:100%" onclick="closeSuccess()">Continue shopping</button>
+</div>
+</div>
+
+<!-- ORDERS MODAL -->
+<div class="overlay" id="ordersModal" onclick="if(event.target===this)closeOrders()">
+<div class="panel">
+<div class="panel-header">
+<div><div class="section-kicker">YOUR ACTIVITY</div><h2>Your orders.</h2><p class="section-copy" style="margin:5px 0 0">Review orders created in this browser.</p></div>
+<button class="panel-close" onclick="closeOrders()" aria-label="Close orders"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div id="ordersList"></div>
+</div>
+</div>
+
+<!-- ACCOUNT MENU -->
+<div class="overlay" id="accountModal" onclick="if(event.target===this)closeAccountMenu()">
+<div class="panel">
+<div class="panel-header">
+<div><div class="section-kicker">YOUR ACCOUNT</div><h2>Account settings.</h2></div>
+<button class="panel-close" onclick="closeAccountMenu()" aria-label="Close account"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div style="display:flex;align-items:center;gap:13px;background:white;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:18px">
+<div class="logo-icon"><i class="fa-solid fa-user"></i></div>
+<div><strong id="accountName" style="display:block"></strong><span id="accountEmail" style="font-size:11px;color:#81796f"></span></div>
+</div>
+<button class="btn btn-light" style="width:100%;margin-bottom:10px" onclick="closeAccountMenu();openWallet()"><i class="fa-solid fa-wallet"></i> Open my wallet</button>
+<button class="btn btn-light" style="width:100%;margin-bottom:10px" onclick="closeAccountMenu();showOrders()"><i class="fa-solid fa-receipt"></i> View my orders</button>
+<button class="btn" style="width:100%;background:#a52b20" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Log out</button>
+</div>
+</div>
+
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastText"></span></div>
 
 <script>
 "use strict";
 
+/* STORAGE */
+function load(key,fallback){
+try{
+const value=localStorage.getItem(key);
+return value===null?fallback:JSON.parse(value);
+}catch(error){return fallback}
+}
+function save(key,value){
+try{localStorage.setItem(key,JSON.stringify(value))}
+catch(error){notify("Your browser could not save this information.")}
+}
+function money(value){
+return new Intl.NumberFormat("en-NG",{style:"currency",currency:"NGN",maximumFractionDigits:0}).format(Number(value)||0);
+}
+function esc(value){
+return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+}
+function notify(message){
+const toast=document.getElementById("toast");
+document.getElementById("toastText").textContent=message;
+toast.classList.add("show");
+clearTimeout(window.toastTimer);
+window.toastTimer=setTimeout(()=>toast.classList.remove("show"),3300);
+}
+
+/* ACCOUNT */
+let currentUser=load("erranngo_user",null);
+let authMode="login";
+
+function showAuthError(message){
+const error=document.getElementById("authError");
+error.textContent=message;
+error.classList.add("show");
+}
+function clearAuthError(){
+document.getElementById("authError").classList.remove("show");
+}
+function switchAuth(){
+authMode=authMode==="login"?"signup":"login";
+updateAuthUI();
+clearAuthError();
+document.getElementById("authForm").reset();
+}
+function updateAuthUI(){
+const signup=authMode==="signup";
+document.getElementById("authKicker").textContent=signup?"CREATE YOUR ACCOUNT":"WELCOME BACK";
+document.getElementById("authTitle").textContent=signup?"Let's make it delicious.":"Good to see you.";
+document.getElementById("authSubtitle").textContent=signup?"Enter your details to create your ERRANDGO account.":"Sign in with the email and password you used when creating your account.";
+document.getElementById("authNameWrap").classList.toggle("hidden",!signup);
+document.getElementById("authPhoneWrap").classList.toggle("hidden",!signup);
+document.getElementById("authConfirmWrap").classList.toggle("hidden",!signup);
+document.getElementById("termsWrap").classList.toggle("hidden",!signup);
+document.getElementById("authName").required=signup;
+document.getElementById("authPhone").required=signup;
+document.getElementById("authConfirm").required=signup;
+document.getElementById("authTerms").required=signup;
+document.getElementById("forgotButton").classList.toggle("hidden",signup);
+document.getElementById("rememberWrap").classList.toggle("hidden",signup);
+document.getElementById("authPassword").autocomplete=signup?"new-password":"current-password";
+document.getElementById("authSubmit").innerHTML=signup?'Create my account <i class="fa-solid fa-arrow-right"></i>':'Sign in <i class="fa-solid fa-arrow-right"></i>';
+document.getElementById("authSwitchText").textContent=signup?"Already have an account?":"New to ERRANNGO?";
+document.getElementById("authSwitch").textContent=signup?"Sign in":"Create your account";
+document.getElementById("passwordStrength").classList.add("hidden");
+}
+function togglePassword(id,button){
+const input=document.getElementById(id);
+input.type=input.type==="password"?"text":"password";
+button.innerHTML=input.type==="password"?'<i class="fa-regular fa-eye"></i>':'<i class="fa-regular fa-eye-slash"></i>';
+}
+document.getElementById("authPassword").addEventListener("input",function(){
+const strength=document.getElementById("passwordStrength");
+if(authMode!=="signup"||!this.value){strength.classList.add("hidden");return}
+strength.classList.remove("hidden");
+let score=0;
+if(this.value.length>=8)score++;
+if(/[A-Z]/.test(this.value))score++;
+if(/[0-9]/.test(this.value))score++;
+if(/[^A-Za-z0-9]/.test(this.value))score++;
+const labels=["Use a longer password","Weak password","Fair password","Good password","Strong password"];
+strength.textContent=labels[score];
+strength.style.color=score>=3?"#16803d":"#a36a24";
+});
+
+function submitAuth(event){
+event.preventDefault();
+clearAuthError();
+const email=document.getElementById("authEmail").value.trim().toLowerCase();
+const password=document.getElementById("authPassword").value;
+const account=load("errandgo_demo_account",null);
+
+if(!email||!password){
+showAuthError("Enter your email address and password.");
+return;
+}
+
+if(authMode==="signup"){
+const name=document.getElementById("authName").value.trim();
+const phone=document.getElementById("authPhone").value.trim();
+const confirm=document.getElementById("authConfirm").value;
+
+if(name.length<2){
+showAuthError("Enter your full name.");
+return;
+}
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+showAuthError("Enter a valid email address.");
+return;
+}
+if(phone.replace(/\D/g,"").length<7){
+showAuthError("Enter a valid phone number.");
+return;
+}
+if(password.length<8){
+showAuthError("Use a password with at least eight characters.");
+return;
+}
+if(password!==confirm){
+showAuthError("Your passwords do not match.");
+return;
+}
+if(!document.getElementById("authTerms").checked){
+showAuthError("Please accept the demo terms to continue.");
+return;
+}
+if(account&&account.email.toLowerCase()===email){
+showAuthError("An account with this email already exists. Please sign in instead.");
+return;
+}
+const newAccount={name,email,phone,password};
+save("errandgo_demo_account",newAccount);
+currentUser={name,email,phone};
+save("erranngo_user",currentUser);
+finishAuth("Welcome to ERRANDGO, "+name+"!");
+return;
+}
+
+if(!account){
+showAuthError("No account was found in this browser. Create an account first.");
+return;
+}
+if(account.email.toLowerCase()!==email||account.password!==password){
+showAuthError("The email or password is incorrect. Check your details and try again.");
+return;
+}
+currentUser={name:account.name,email:account.email,phone:account.phone||""};
+save("erranngo_user",currentUser);
+if(document.getElementById("rememberMe").checked){
+save("errandgo_remembered_email",email);
+}else{
+localStorage.removeItem("errandgo_remembered_email");
+}
+finishAuth("Welcome back, "+currentUser.name+"!");
+}
+
+function finishAuth(message){
+document.getElementById("authScreen").classList.add("hidden");
+document.getElementById("website").classList.remove("hidden");
+document.body.classList.remove("locked");
+updateAccountButton();
+renderFoods();
+renderRestaurants();
+updateCart();
+updateWalletUI();
+notify(message);
+}
+function logout(){
+currentUser=null;
+save("erranngo_user",null);
+closeAccountMenu();
+closeWallet();
+closeOrders();
+closeCart();
+closeCheckout();
+closeSuccess();
+document.getElementById("website").classList.add("hidden");
+document.getElementById("authScreen").classList.remove("hidden");
+document.getElementById("authForm").reset();
+authMode="login";
+updateAuthUI();
+clearAuthError();
+document.body.classList.add("locked");
+window.scrollTo(0,0);
+notify("You have logged out.");
+}
+function forgotPassword(){
+showAuthError("Password recovery requires a secure server and email service. For this demo, use the same password you registered with.");
+}
+function updateAccountButton(){
+const button=document.getElementById("navAccount");
+button.textContent=currentUser?currentUser.name.split(" ")[0]:"Account";
+}
+function showAccountMenu(){
+if(!currentUser){notify("Please sign in first.");return}
+document.getElementById("accountName").textContent=currentUser.name;
+document.getElementById("accountEmail").textContent=currentUser.email;
+document.getElementById("accountModal").classList.add("show");
+document.body.classList.add("locked");
+}
+function closeAccountMenu(){
+document.getElementById("accountModal").classList.remove("show");
+unlockIfClear();
+}
+
+/* ORIGINAL FOODSTUFF IMAGE PATHS ARE PRESERVED */
 const foods=[
-{id:1,name:"Fresh Red Tomatoes",category:"Vegetables",price:1800,rating:4.9,time:"Fresh produce",image:"./368817.jpg",desc:"Fresh red tomatoes for stews, sauces and everyday cooking.",unit:"basket"},
-{id:2,name:"Tatashe (Red Bell Pepper)",category:"Vegetables",price:1500,rating:4.8,time:"Fresh produce",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cayenne%20pepper%20(Tatashi%20in%20Hausa%20language%20).jpg?width=900",desc:"Red pepper for rich, colourful Nigerian stews.",unit:"basket"},
-{id:3,name:"Rodo (Scotch Bonnet Pepper)",category:"Vegetables",price:1000,rating:4.9,time:"Fresh produce",image:"./b.webp",desc:"Hot Nigerian pepper for adding heat and flavour.",unit:"basket"},
-{id:4,name:"Fresh Red Onions",category:"Vegetables",price:1200,rating:4.8,time:"Fresh produce",image:"./c.webp",desc:"A kitchen staple for sauces, soups and rice dishes.",unit:"basket"},
-{id:5,name:"Ugu Leaves (Fluted Pumpkin)",category:"Soup ingredients",price:800,rating:4.9,time:"Fresh leaves",image:"./d.webp",desc:"Popular Nigerian leafy vegetable for soups and stews.",unit:"bunch"},
-{id:6,name:"Ewedu Leaves",category:"Soup ingredients",price:700,rating:4.7,time:"Fresh leaves",image:"./e.webp",desc:"Traditional leaves for preparing delicious ewedu soup.",unit:"bunch"},
-{id:7,name:"Bitterleaf (Onugbu)",category:"Soup ingredients",price:900,rating:4.8,time:"Fresh leaves",image:"https://commons.wikimedia.org/wiki/Special:FilePath/BitterLeaf.jpg?width=900",desc:"A traditional ingredient for rich bitterleaf soup.",unit:"bunch"},
-{id:8,name:"Waterleaf",category:"Soup ingredients",price:600,rating:4.7,time:"Fresh leaves",image:"./f.webp",desc:"Soft leafy greens for Nigerian vegetable soups.",unit:"bunch"},
-{id:9,name:"Okazi / Afang Leaves",category:"Soup ingredients",price:1000,rating:4.8,time:"Fresh leaves",image:"./g.webp",desc:"Traditional leafy ingredient for afang and related soups.",unit:"bunch"},
-{id:10,name:"Fresh Okra",category:"Vegetables",price:900,rating:4.8,time:"Fresh produce",image:"./h.webp",desc:"Fresh okra for draw soup and other local dishes.",unit:"basket"},
-{id:11,name:"Garden Eggs",category:"Vegetables",price:1200,rating:4.7,time:"Fresh produce",image:"./i.webp",desc:"Garden eggs for snacks, sauces and traditional meals.",unit:"basket"},
-{id:12,name:"Fresh Plantain",category:"Tubers",price:1800,rating:4.9,time:"Fresh produce",image:"./j.webp",desc:"Plantain for frying, boiling, roasting or making porridge.",unit:"bunch"},
-{id:13,name:"White Yam",category:"Tubers",price:3500,rating:4.9,time:"Farm produce",image:"./k.webp",desc:"Versatile white yam for pounded yam, porridge and boiling.",unit:"tuber"},
-{id:14,name:"Sweet Potatoes",category:"Tubers",price:1800,rating:4.8,time:"Farm produce",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Nigerian%20Sweet%20Potato.jpg?width=900",desc:"Naturally sweet tubers for roasting, boiling and frying.",unit:"basket"},
-{id:15,name:"Irish Potatoes",category:"Tubers",price:2500,rating:4.7,time:"Farm produce",image:"./l.webp",desc:"Potatoes for chips, mash, stews and home cooking.",unit:"basket"},
-{id:16,name:"Cassava Tubers",category:"Tubers",price:2200,rating:4.8,time:"Farm produce",image:"./m.webp",desc:"Cassava for preparing popular Nigerian staples.",unit:"bundle"},
-{id:17,name:"Ijebu Garri",category:"Grains",price:1800,rating:4.9,time:"Pantry staple",image:"./n.webp",desc:"Crunchy Ijebu garri for soaking and traditional meals.",unit:"bag"},
-{id:18,name:"Yellow Garri",category:"Grains",price:1700,rating:4.8,time:"Pantry staple",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Sack%20of%20Yellow%20Garri.jpg?width=900",desc:"Yellow garri for soaking or preparing eba.",unit:"bag"},
-{id:19,name:"White Rice",category:"Grains",price:3200,rating:4.8,time:"Pantry staple",image:"./o.webp",desc:"Everyday rice for jollof, fried rice and family meals.",unit:"bag"},
-{id:20,name:"Ofada Rice",category:"Grains",price:3800,rating:4.9,time:"Pantry staple",image:"./p.webp",desc:"Local rice loved with ayamase and traditional sauces.",unit:"bag"},
-{id:21,name:"Honey Beans (Oloyin)",category:"Grains",price:2400,rating:4.9,time:"Pantry staple",image:"./q.webp",desc:"Honey beans for moi moi, akara and bean porridge.",unit:"bag"},
-{id:22,name:"Brown Beans",category:"Grains",price:2200,rating:4.8,time:"Pantry staple",image:"./r.jpg",desc:"A protein-rich staple for many Nigerian dishes.",unit:"bag"},
-{id:23,name:"White Beans",category:"Grains",price:2200,rating:4.7,time:"Pantry staple",image:"./s.jpg",desc:"White beans for porridge and other hearty meals.",unit:"bag"},
-{id:24,name:"Ground Egusi Seeds",category:"Soup ingredients",price:2800,rating:4.9,time:"Soup staple",image:"./t.webp",desc:"Ground melon seeds for rich and delicious egusi soup.",unit:"pack"},
-{id:25,name:"Ogbono Seeds",category:"Soup ingredients",price:3000,rating:4.8,time:"Soup staple",image:"./ubu.webp",desc:"Ogbono seeds for making traditional draw soup.",unit:"pack"},
-{id:26,name:"Dried Crayfish",category:"Soup ingredients",price:1600,rating:4.9,time:"Soup staple",image:"./u.webp",desc:"Dried crayfish for deep, savoury flavour in soups.",unit:"pack"},
-{id:27,name:"Stockfish (Okporoko)",category:"Soup ingredients",price:3500,rating:4.9,time:"Soup staple",image:"./jb.webp",desc:"Traditional dried stockfish for hearty Nigerian soups.",unit:"pack"},
-{id:28,name:"Smoked Fish",category:"Protein",price:3200,rating:4.8,time:"Smoked seafood",image:"./v.webp",desc:"Smoked fish to bring rich flavour to your meals.",unit:"pack"},
-{id:29,name:"Dried Catfish",category:"Protein",price:3000,rating:4.8,time:"Dried seafood",image:"./nii.webp",desc:"Dried catfish for traditional soups and sauces.",unit:"pack"},
-{id:30,name:"Raw Chicken",category:"Protein",price:6500,rating:4.8,time:"Fresh poultry",image:"./w.webp",desc:"Chicken for soups, stews, grilling and special meals.",unit:"pack"},
-{id:31,name:"Beef",category:"Protein",price:6000,rating:4.8,time:"Fresh meat",image:"./x.webp",desc:"Beef cuts for stews, soups and everyday cooking.",unit:"pack"},
-{id:32,name:"Goat Meat",category:"Protein",price:7500,rating:4.9,time:"Fresh meat",image:"./y.jpg",desc:"Goat meat for pepper soup and special occasions.",unit:"pack"},
-{id:33,name:"Fresh Eggs",category:"Protein",price:2800,rating:4.9,time:"Farm fresh",image:"./z.webp",desc:"Eggs for breakfast, baking and quick family meals.",unit:"crate"},
-{id:34,name:"Palm Oil",category:"Oils",price:2500,rating:4.8,time:"Kitchen essential",image:"./1.webp",desc:"Palm oil for traditional soups, stews and sauces.",unit:"bottle"},
-{id:35,name:"Groundnut Oil",category:"Oils",price:3200,rating:4.8,time:"Kitchen essential",image:"./gro.webp",desc:"Groundnut oil for frying and everyday cooking.",unit:"bottle"}
+{id:1,name:"Fresh Red Tomatoes",restaurant:"Lagos Fresh Market",category:"Fresh Produce",price:2500,rating:4.6,time:"Per basket",image:"./368817.jpg",desc:"Ripe tomatoes for stews, jollof rice and everyday Nigerian cooking."},
+{id:2,name:"Tatashe (Red Bell Pepper)",restaurant:"Lagos Fresh Market",category:"Fresh Produce",price:1800,rating:4.7,time:"Per pack",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cayenne%20pepper%20(Tatashi%20in%20Hausa%20language%20).jpg?width=900",desc:"Sweet red pepper used in jollof, obe ata and many Nigerian stews."},
+{id:3,name:"Rodo (Scotch Bonnet Pepper)",restaurant:"Lagos Fresh Market",category:"Fresh Produce",price:1200,rating:4.8,time:"Per pack",image:"./b.webp",desc:"Hot pepper for sauces, stews and spicy Nigerian dishes."},
+{id:4,name:"Fresh Red Onions",restaurant:"Lagos Fresh Market",category:"Fresh Produce",price:1500,rating:4.7,time:"Per basket",image:"./c.webp",desc:"A kitchen essential for stews, soups, sauces and marinades."},
+{id:5,name:"Ugu Leaves (Fluted Pumpkin)",restaurant:"Eastern Harvest",category:"Leafy Vegetables",price:1000,rating:4.8,time:"Fresh bunch",image:"./d.webp",desc:"Fresh ugu leaves for vegetable soups and traditional meals."},
+{id:6,name:"Ewedu Leaves",restaurant:"Western Greens",category:"Leafy Vegetables",price:800,rating:4.6,time:"Fresh bunch",image:"./e.webp",desc:"Traditional leafy vegetable for smooth Yoruba ewedu soup."},
+{id:7,name:"Bitterleaf (Onugbu)",restaurant:"Eastern Harvest",category:"Leafy Vegetables",price:1000,rating:4.7,time:"Fresh bunch",image:"https://commons.wikimedia.org/wiki/Special:FilePath/BitterLeaf.jpg?width=900",desc:"Traditional bitterleaf used in Nigerian soups including ofe onugbu."},
+{id:8,name:"Waterleaf",restaurant:"Eastern Harvest",category:"Leafy Vegetables",price:700,rating:4.5,time:"Fresh bunch",image:"./f.webp",desc:"Tender waterleaf for vegetable soups and local dishes."},
+{id:9,name:"Okazi / Afang Leaves",restaurant:"Eastern Harvest",category:"Leafy Vegetables",price:1200,rating:4.8,time:"Fresh bunch",image:"./g.webp",desc:"A popular leafy ingredient for afang and other regional soups."},
+{id:10,name:"Fresh Okra",restaurant:"Lagos Fresh Market",category:"Fresh Produce",price:1300,rating:4.6,time:"Per pack",image:"./h.webp",desc:"Fresh okra for draw soup, stews and traditional dishes."},
+{id:11,name:"Garden Eggs",restaurant:"Lagos Fresh Market",category:"Fresh Produce",price:1600,rating:4.5,time:"Per pack",image:"./i.webp",desc:"Fresh garden eggs for snacks, sauces and local meals."},
+{id:12,name:"Fresh Plantain",restaurant:"Lagos Fresh Market",category:"Fresh Produce",price:2200,rating:4.8,time:"Per bunch",image:"./j.webp",desc:"Plantain for frying, boiling, roasting and preparing dodo."},
+{id:13,name:"White Yam",restaurant:"Eastern Harvest",category:"Tubers & Roots",price:4500,rating:4.9,time:"Per tuber",image:"./k.webp",desc:"White yam for pounded yam, yam porridge and boiled yam."},
+{id:14,name:"Sweet Potatoes",restaurant:"Lagos Fresh Market",category:"Tubers & Roots",price:1800,rating:4.6,time:"Per pack",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Nigerian%20Sweet%20Potato.jpg?width=900",desc:"Sweet potatoes for boiling, roasting, frying and home cooking."},
+{id:15,name:"Irish Potatoes",restaurant:"Lagos Fresh Market",category:"Tubers & Roots",price:2500,rating:4.6,time:"Per pack",image:"./l.webp",desc:"Versatile potatoes for chips, stews and family meals."},
+{id:16,name:"Cassava Tubers",restaurant:"Western Greens",category:"Tubers & Roots",price:2000,rating:4.7,time:"Per tuber",image:"./m.webp",desc:"Fresh cassava for traditional meals and household processing."},
+{id:17,name:"Ijebu Garri",restaurant:"Western Pantry",category:"Pantry Staples",price:2500,rating:4.8,time:"Per measure",image:"./n.webp",desc:"Popular sour garri for drinking and preparing eba."},
+{id:18,name:"Yellow Garri",restaurant:"Western Pantry",category:"Pantry Staples",price:2600,rating:4.7,time:"Per measure",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Sack%20of%20Yellow%20Garri.jpg?width=900",desc:"Yellow garri for eba and other household uses."},
+{id:19,name:"White Rice",restaurant:"Western Pantry",category:"Grains & Beans",price:3800,rating:4.8,time:"Per measure",image:"./o.webp",desc:"Everyday rice for jollof, fried rice and plain rice meals."},
+{id:20,name:"Ofada Rice",restaurant:"Western Pantry",category:"Grains & Beans",price:4200,rating:4.8,time:"Per measure",image:"./p.webp",desc:"Local rice enjoyed with ayamase and traditional sauces."},
+{id:21,name:"Honey Beans (Oloyin)",restaurant:"Western Pantry",category:"Grains & Beans",price:3200,rating:4.7,time:"Per measure",image:"./q.webp",desc:"Sweet-tasting beans for akara, moi moi and beans porridge."},
+{id:22,name:"Brown Beans",restaurant:"Western Pantry",category:"Grains & Beans",price:3000,rating:4.6,time:"Per measure",image:"./r.jpg",desc:"A Nigerian staple for beans porridge and traditional dishes."},
+{id:23,name:"White Beans",restaurant:"Western Pantry",category:"Grains & Beans",price:2900,rating:4.5,time:"Per measure",image:"./s.jpg",desc:"Versatile beans for home-cooked meals."},
+{id:24,name:"Ground Egusi Seeds",restaurant:"Eastern Harvest",category:"Soup Ingredients",price:4500,rating:4.9,time:"Per pack",image:"./t.webp",desc:"Ground melon seeds for rich egusi soup."},
+{id:25,name:"Ogbono Seeds",restaurant:"Eastern Harvest",category:"Soup Ingredients",price:4000,rating:4.8,time:"Per pack",image:"./ubu.webp",desc:"Ogbono seeds for traditional draw soup."},
+{id:26,name:"Dried Crayfish",restaurant:"Coastal Pantry",category:"Soup Ingredients",price:3500,rating:4.8,time:"Per pack",image:"./u.webp",desc:"Dried crayfish for flavourful Nigerian soups and stews."},
+{id:27,name:"Stockfish (Okporoko)",restaurant:"Coastal Pantry",category:"Fish & Meat",price:5500,rating:4.9,time:"Per pack",image:"./jb.webp",desc:"Stockfish for soups, broths and traditional meals."},
+{id:28,name:"Smoked Fish",restaurant:"Coastal Pantry",category:"Fish & Meat",price:4000,rating:4.7,time:"Per pack",image:"./v.webp",desc:"Smoked fish for soups, sauces and rich stews."},
+{id:29,name:"Dried Catfish",restaurant:"Coastal Pantry",category:"Fish & Meat",price:4500,rating:4.7,time:"Per pack",image:"./nii.webp",desc:"Dried catfish for local soups and traditional dishes."},
+{id:30,name:"Raw Chicken",restaurant:"Fresh Protein Market",category:"Fish & Meat",price:6500,rating:4.8,time:"Per pack",image:"./w.webp",desc:"Chicken portions for stews, grilling and family meals."},
+{id:31,name:"Beef",restaurant:"Fresh Protein Market",category:"Fish & Meat",price:7000,rating:4.8,time:"Per pack",image:"./x.webp",desc:"Fresh beef for soups, stews and everyday cooking."},
+{id:32,name:"Goat Meat",restaurant:"Fresh Protein Market",category:"Fish & Meat",price:8500,rating:4.9,time:"Per pack",image:"./y.jpg",desc:"Goat meat for pepper soup, stews and special meals."},
+{id:33,name:"Fresh Eggs",restaurant:"Fresh Protein Market",category:"Fish & Meat",price:2800,rating:4.7,time:"Per crate",image:"./z.webp",desc:"Eggs for breakfast, baking and everyday meals."},
+{id:34,name:"Palm Oil",restaurant:"Western Pantry",category:"Cooking Oils",price:3500,rating:4.8,time:"Per bottle",image:"./1.webp",desc:"Red palm oil for soups, stews and traditional dishes."},
+{id:35,name:"Groundnut Oil",restaurant:"Western Pantry",category:"Cooking Oils",price:4000,rating:4.7,time:"Per bottle",image:"./gro.webp",desc:"Groundnut oil for frying and everyday cooking."}
 ];
 
 const restaurants=[
-{name:"Fresh Farm Market",type:"Fresh vegetables and produce",rating:"4.9",delivery:"25–40 min",image:"https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=850&q=85"},
-{name:"Naija Pantry",type:"Rice, beans and pantry essentials",rating:"4.8",delivery:"30–45 min",image:"https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=850&q=85"},
-{name:"Root & Tuber Store",type:"Yam, cassava and tubers",rating:"4.8",delivery:"30–50 min",image:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=850&q=85"},
-{name:"Protein Corner",type:"Meat, fish and poultry",rating:"4.9",delivery:"30–50 min",image:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=850&q=85"},
-{name:"Kitchen Oil Market",type:"Palm oil and cooking oils",rating:"4.7",delivery:"25–40 min",image:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=850&q=85"}
+{name:"Lagos Fresh Market",category:"Fresh produce & vegetables",rating:4.8,time:"Fresh market selection",tag:"FRESH PRODUCE",image:"https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=850&q=85"},
+{name:"Western Pantry",category:"Grains, beans & pantry staples",rating:4.7,time:"Pantry essentials",tag:"PANTRY ESSENTIALS",image:"https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=850&q=85"},
+{name:"Eastern Harvest",category:"Tubers, leaves & soup ingredients",rating:4.9,time:"Traditional ingredients",tag:"LOCAL INGREDIENTS",image:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=850&q=85"},
+{name:"Fresh Protein Market",category:"Meat, chicken & eggs",rating:4.8,time:"Protein essentials",tag:"FRESH PROTEIN",image:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=850&q=85"},
+{name:"Coastal Pantry",category:"Fish & seafood ingredients",rating:4.7,time:"Dried and smoked fish",tag:"FISH & SEAFOOD",image:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=850&q=85"}
 ];
 
-const money=value=>"₦"+Number(value).toLocaleString("en-NG");
-const $=selector=>document.querySelector(selector);
-const $$=selector=>Array.from(document.querySelectorAll(selector));
+const categories=["All","Fresh Produce","Leafy Vegetables","Tubers & Roots","Pantry Staples","Grains & Beans","Soup Ingredients","Fish & Meat","Cooking Oils"];
+let selectedCategory="All";
+let searchTerm="";
+let cart=load("errandgo_cart",[]);
+let favourites=load("errandgo_favourites",[]);
+let walletBalance=Number(load("erranngo_wallet_balance",0))||0;
+let walletHistory=load("erranngo_wallet_history",[]);
+let orders=load("erranngo_orders",[]);
 
-let activeCategory="All";
-let cart=readStorage("errandgo_cart",{});
-let currentUser=readStorage("errandgo_user",null);
-let authMode="signin";
-let toastTimer;
-
-function readStorage(key,fallback){
- try{const value=localStorage.getItem(key);return value===null?fallback:JSON.parse(value)}
- catch(error){return fallback}
+/* FOOD CATEGORIES AND PRODUCT CARDS */
+function renderCategories(){
+document.getElementById("categoryList").innerHTML=categories.map(category=>`
+<button class="category ${selectedCategory===category?"active":""}" onclick="selectCategory('${esc(category)}')">${category==="All"?'<i class="fa-solid fa-border-all"></i> ':''}${esc(category)}</button>
+`).join("");
 }
-function saveStorage(key,value){
- try{localStorage.setItem(key,JSON.stringify(value));return true}
- catch(error){showToast("Your browser could not save this change.");return false}
+function selectCategory(value){
+selectedCategory=value;
+renderCategories();
+renderFoods();
 }
-function escapeHTML(value){
- return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[char]))
-}
-function showToast(message){
- $("#toastText").textContent=message;
- $("#toast").classList.add("show");
- clearTimeout(toastTimer);
- toastTimer=setTimeout(()=>$("#toast").classList.remove("show"),2800);
-}
-function imageError(img){
- img.style.display="none";
- const holder=img.closest(".product-image");
- if(holder){
-  const missing=holder.querySelector(".missing-image");
-  if(missing)missing.style.display="flex";
- }
+function resetFood(){
+selectedCategory="All";
+searchTerm="";
+document.getElementById("searchFood").value="";
+document.getElementById("sortFood").value="default";
+renderCategories();
+renderFoods();
 }
 function renderFoods(){
- let list=[...foods];
- const search=$("#searchInput").value.trim().toLowerCase();
- if(activeCategory!=="All")list=list.filter(food=>food.category===activeCategory);
- if(search)list=list.filter(food=>(food.name+" "+food.category+" "+food.desc).toLowerCase().includes(search));
- const sort=$("#sortFilter").value;
- if(sort==="low")list.sort((a,b)=>a.price-b.price);
- if(sort==="high")list.sort((a,b)=>b.price-a.price);
- if(sort==="az")list.sort((a,b)=>a.name.localeCompare(b.name));
- $("#resultCount").textContent=`${list.length} ingredient${list.length===1?"":"s"}`;
- $$(".category-card").forEach(button=>button.classList.toggle("active",button.dataset.category===activeCategory));
- if(!list.length){
-  $("#productGrid").innerHTML='<div class="empty-state"><i class="fa-solid fa-magnifying-glass"></i><h3>No ingredients found</h3><p>Try another search or choose a different category.</p></div>';
-  return;
- }
- $("#productGrid").innerHTML=list.map(food=>`
- <article class="product-card">
-  <div class="product-image">
-   <img src="${escapeHTML(food.image)}" alt="${escapeHTML(food.name)}" loading="lazy" onerror="imageError(this)">
-   <div class="missing-image"><i class="fa-regular fa-image"></i><span>Image unavailable</span><small>${escapeHTML(food.image.startsWith("./")?"Check the file in your GitHub repository":"The image host may be unavailable")}</small></div>
-   <span class="badge">${escapeHTML(food.category)}</span>
-   <button class="favorite" data-favorite="${food.id}" aria-label="Favourite ${escapeHTML(food.name)}"><i class="fa-regular fa-heart"></i></button>
-  </div>
-  <div class="product-body">
-   <div class="product-meta"><span>${escapeHTML(food.time)}</span><span class="rating"><i class="fa-solid fa-star"></i> ${food.rating}</span></div>
-   <h3>${escapeHTML(food.name)}</h3>
-   <p class="product-desc">${escapeHTML(food.desc)}</p>
-   <div class="product-bottom"><div class="price">${money(food.price)}<small>per ${escapeHTML(food.unit)}</small></div><button class="add-btn" data-add="${food.id}" aria-label="Add ${escapeHTML(food.name)} to basket"><i class="fa-solid fa-plus"></i></button></div>
-  </div>
- </article>`).join("");
+const query=document.getElementById("searchFood").value.trim().toLowerCase();
+searchTerm=query;
+let list=foods.filter(food=>{
+const categoryMatch=selectedCategory==="All"||food.category===selectedCategory;
+const textMatch=(food.name+" "+food.category+" "+food.restaurant+" "+food.desc).toLowerCase().includes(query);
+return categoryMatch&&textMatch;
+});
+const sort=document.getElementById("sortFood").value;
+if(sort==="low")list.sort((a,b)=>a.price-b.price);
+if(sort==="high")list.sort((a,b)=>b.price-a.price);
+if(sort==="rating")list.sort((a,b)=>b.rating-a.rating);
+document.getElementById("foodCount").textContent=list.length;
+document.getElementById("emptyFoods").classList.toggle("hidden",list.length!==0);
+document.getElementById("foodGrid").innerHTML=list.map(food=>{
+const liked=favourites.includes(food.id);
+return `
+<article class="food-card">
+<div class="food-photo">
+<img loading="lazy" src="${esc(food.image)}" alt="${esc(food.name)}" onerror="this.onerror=null;this.alt='Image unavailable: ${esc(food.name)}';this.style.opacity='.25';this.parentElement.style.background='#f5e8dc'">
+<span class="food-badge">${esc(food.category)}</span>
+<button class="heart ${liked?"liked":""}" onclick="toggleFavourite(${food.id})" aria-label="Save ${esc(food.name)}"><i class="${liked?"fa-solid":"fa-regular"} fa-heart"></i></button>
+</div>
+<div class="food-info">
+<h3>${esc(food.name)}</h3>
+<div class="food-restaurant">${esc(food.restaurant)}</div>
+<p class="food-desc">${esc(food.desc)}</p>
+<div class="food-meta"><span class="rating"><i class="fa-solid fa-star"></i> ${food.rating}</span><span><i class="fa-regular fa-clock"></i> ${esc(food.time)}</span></div>
+<div class="food-bottom"><strong>${money(food.price)}</strong><button class="food-add" onclick="addToCart(${food.id})" aria-label="Add ${esc(food.name)} to basket"><i class="fa-solid fa-plus"></i></button></div>
+</div>
+</article>`;
+}).join("");
+}
+function toggleFavourite(id){
+if(favourites.includes(id)){
+favourites=favourites.filter(value=>value!==id);
+notify("Removed from favourites.");
+}else{
+favourites.push(id);
+notify("Added to favourites.");
+}
+save("errandgo_favourites",favourites);
+renderFoods();
 }
 function renderRestaurants(){
- $("#restaurantGrid").innerHTML=restaurants.map(store=>`
- <article class="restaurant-card">
-  <img src="${escapeHTML(store.image)}" alt="${escapeHTML(store.name)}" loading="lazy" onerror="this.style.display='none'">
-  <div class="restaurant-body"><h3>${escapeHTML(store.name)}</h3><p>${escapeHTML(store.type)}</p>
-   <div class="restaurant-footer"><strong><i class="fa-solid fa-star"></i> ${store.rating}</strong><span><i class="fa-regular fa-clock"></i> ${escapeHTML(store.delivery)}</span></div>
-  </div>
- </article>`).join("");
+document.getElementById("restaurantGrid").innerHTML=restaurants.map(restaurant=>`
+<article class="restaurant-card">
+<div class="restaurant-photo"><img loading="lazy" src="${esc(restaurant.image)}" alt="${esc(restaurant.name)}" onerror="this.onerror=null;this.alt='Image unavailable: ${esc(restaurant.name)}';this.style.opacity='.25'"></div>
+<div class="restaurant-info">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start"><h3>${esc(restaurant.name)}</h3><span style="font-size:11px;color:#b87a16;white-space:nowrap"><i class="fa-solid fa-star"></i> ${restaurant.rating}</span></div>
+<p>${esc(restaurant.category)}</p>
+<div class="restaurant-footer"><span>${esc(restaurant.tag)}</span><button class="auth-switch" onclick="browseRestaurant('${esc(restaurant.name)}')">Explore products ↗</button></div>
+</div>
+</article>`).join("");
 }
-function cartQuantity(){
- return Object.values(cart).reduce((sum,item)=>sum+item.quantity,0);
+function browseRestaurant(name){
+selectedCategory="All";
+document.getElementById("searchFood").value=name;
+renderCategories();
+renderFoods();
+document.getElementById("menu").scrollIntoView({behavior:"smooth"});
 }
-function cartSubtotal(){
- return Object.values(cart).reduce((sum,item)=>sum+item.price*item.quantity,0);
-}
-function deliveryCost(){
- return cartQuantity()===0?0:1000;
-}
+
+/* BASKET */
+function byId(id){return foods.find(food=>food.id===Number(id))}
+function countCart(){return cart.reduce((sum,item)=>sum+item.quantity,0)}
+function subtotal(){return cart.reduce((sum,item)=>{const food=byId(item.id);return sum+(food?food.price*item.quantity:0)},0)}
+function delivery(){return cart.length===0?0:subtotal()>=20000?0:1500}
 function addToCart(id){
- const food=foods.find(item=>item.id===Number(id));
- if(!food)return;
- if(cart[id])cart[id].quantity++;
- else cart[id]={id:food.id,name:food.name,price:food.price,image:food.image,quantity:1};
- saveStorage("errandgo_cart",cart);
- renderCart();
- showToast(food.name+" added to your basket");
+if(!currentUser){notify("Please sign in first.");return}
+const item=cart.find(entry=>entry.id===id);
+if(item)item.quantity++;
+else cart.push({id,quantity:1});
+save("errandgo_cart",cart);
+updateCart();
+notify(byId(id).name+" added to your basket.");
 }
-function updateQuantity(id,change){
- if(!cart[id])return;
- cart[id].quantity+=change;
- if(cart[id].quantity<=0)delete cart[id];
- saveStorage("errandgo_cart",cart);
- renderCart();
+function changeQuantity(id,delta){
+const item=cart.find(entry=>entry.id===id);
+if(!item)return;
+item.quantity+=delta;
+if(item.quantity<=0)cart=cart.filter(entry=>entry.id!==id);
+save("errandgo_cart",cart);
+updateCart();
 }
-function removeFromCart(id){
- if(!cart[id])return;
- const name=cart[id].name;
- delete cart[id];
- saveStorage("errandgo_cart",cart);
- renderCart();
- showToast(name+" removed from your basket");
+function removeItem(id){
+cart=cart.filter(item=>item.id!==id);
+save("errandgo_cart",cart);
+updateCart();
+notify("Item removed from your basket.");
 }
-function renderCart(){
- const items=Object.values(cart);
- const quantity=cartQuantity();
- const subtotal=cartSubtotal();
- const delivery=deliveryCost();
- $("#cartCount").textContent=quantity>99?"99+":quantity;
- $("#cartTitleCount").textContent=`(${quantity})`;
- $("#cartSubtotal").textContent=money(subtotal);
- $("#deliveryFee").textContent=money(delivery);
- $("#cartTotal").textContent=money(subtotal+delivery);
- $("#checkoutTotal").textContent=money(subtotal+delivery);
- $("#checkoutButton").disabled=quantity===0;
- $("#checkoutButton").style.opacity=quantity===0?".55":"1";
- if(!items.length){
-  $("#cartItems").innerHTML='<div class="cart-empty"><i class="fa-solid fa-basket-shopping"></i><h3>Your basket is empty</h3><p>Find your favourite ingredients and add them to your basket.</p><button class="primary-btn" id="emptyCartShop" style="margin-top:18px">Start shopping</button></div>';
-  $("#cartFooter").classList.add("hidden");
-  return;
- }
- $("#cartFooter").classList.remove("hidden");
- $("#cartItems").innerHTML=items.map(item=>`
- <div class="cart-item">
-  <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" onerror="this.style.visibility='hidden'">
-  <div><h4>${escapeHTML(item.name)}</h4><div class="item-price">${money(item.price*item.quantity)}</div>
-   <div class="quantity"><button data-quantity="${item.id}" data-change="-1" aria-label="Decrease quantity">−</button><span>${item.quantity}</span><button data-quantity="${item.id}" data-change="1" aria-label="Increase quantity">+</button></div>
-  </div>
-  <button class="remove-item" data-remove="${item.id}" aria-label="Remove ${escapeHTML(item.name)}"><i class="fa-solid fa-trash"></i></button>
- </div>`).join("");
+function updateCart(){
+document.getElementById("cartCount").textContent=countCart();
+document.getElementById("drawerCount").textContent="("+countCart()+")";
+if(!cart.length){
+document.getElementById("cartItems").innerHTML=`
+<div style="text-align:center;padding:55px 8px">
+<div style="width:68px;height:68px;border-radius:50%;background:#fff0e8;color:var(--orange);display:grid;place-items:center;font-size:25px;margin:auto"><i class="fa-solid fa-basket-shopping"></i></div>
+<h3 style="font-size:19px;margin:17px 0 7px">Your basket is empty.</h3>
+<p class="section-copy" style="font-size:11px">Let's find something for your kitchen.</p>
+<button class="btn" onclick="closeCart();document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore foodstuffs</button>
+</div>`;
+document.getElementById("cartFooter").innerHTML="";
+return;
+}
+document.getElementById("cartItems").innerHTML=cart.map(item=>{
+const food=byId(item.id);
+if(!food)return "";
+return `
+<div class="cart-row">
+<img src="${esc(food.image)}" alt="${esc(food.name)}" onerror="this.onerror=null;this.style.opacity='.3'">
+<div><h4>${esc(food.name)}</h4><p>${esc(food.restaurant)}</p><strong class="orange" style="display:block;font-size:12px;margin-top:7px">${money(food.price*item.quantity)}</strong>
+<div class="qty"><button onclick="changeQuantity(${food.id},-1)" aria-label="Decrease quantity"><i class="fa-solid fa-minus" style="font-size:9px"></i></button><span style="font-size:11px;font-weight:900">${item.quantity}</span><button onclick="changeQuantity(${food.id},1)" aria-label="Increase quantity"><i class="fa-solid fa-plus" style="font-size:9px"></i></button></div>
+</div>
+<button onclick="removeItem(${food.id})" aria-label="Remove ${esc(food.name)}" style="border:0;background:none;color:#9b9185"><i class="fa-regular fa-trash-can"></i></button>
+</div>`;
+}).join("");
+document.getElementById("cartFooter").innerHTML=`
+<div class="summary-row"><span class="muted">Subtotal</span><strong>${money(subtotal())}</strong></div>
+<div class="summary-row"><span class="muted">Delivery</span><strong>${delivery()===0?"FREE":money(delivery())}</strong></div>
+${subtotal()<20000?`<p style="font-size:10px;color:#8b8379;margin:0 0 13px">Spend ${money(20000-subtotal())} more for free demo delivery.</p>`:""}
+<div class="summary-total"><strong>Total</strong><strong style="font-size:20px">${money(subtotal()+delivery())}</strong></div>
+<button class="btn" style="width:100%;margin-top:15px" onclick="startCheckout()">Continue to checkout <i class="fa-solid fa-arrow-right"></i></button>
+<p style="font-size:9px;color:#9b9288;text-align:center;margin-bottom:0">Demo checkout. No payment is taken.</p>`;
 }
 function openCart(){
- $("#accountPanel").classList.remove("show");
- $("#cartDrawer").classList.add("open");
- $("#cartDrawer").setAttribute("aria-hidden","false");
- $("#overlay").classList.add("show");
- document.body.style.overflow="hidden";
+updateCart();
+document.getElementById("cartBackdrop").classList.add("show");
+document.body.classList.add("locked");
 }
 function closeCart(){
- $("#cartDrawer").classList.remove("open");
- $("#cartDrawer").setAttribute("aria-hidden","true");
- $("#overlay").classList.remove("show");
- document.body.style.overflow="";
+document.getElementById("cartBackdrop").classList.remove("show");
+unlockIfClear();
 }
-function openModal(id){
- closeCart();
- $("#accountPanel").classList.remove("show");
- $("#"+id).classList.add("show");
- document.body.style.overflow="hidden";
+
+/* WALLET */
+function openWallet(){
+if(!currentUser){notify("Please sign in to access your wallet.");return}
+updateWalletUI();
+document.getElementById("walletModal").classList.add("show");
+document.body.classList.add("locked");
 }
-function closeModal(id){
- $("#"+id).classList.remove("show");
- if(!$("#cartDrawer").classList.contains("open"))document.body.style.overflow="";
+function closeWallet(){
+document.getElementById("walletModal").classList.remove("show");
+unlockIfClear();
 }
-function showAuth(mode="signin"){
- authMode=mode;
- $("#authTitle").textContent=mode==="signup"?"Create your account.":"Welcome back.";
- $("#authDescription").textContent=mode==="signup"?"Create an account to personalise your shopping experience.":"Sign in to continue shopping.";
- $("#authSubmit").innerHTML=mode==="signup"?'Create account <i class="fa-solid fa-arrow-right"></i>':'Sign in <i class="fa-solid fa-arrow-right"></i>';
- $("#authSwitchText").textContent=mode==="signup"?"Already have an account?":"New to ERRANDGO?";
- $("#authSwitchButton").textContent=mode==="signup"?"Sign in":"Create an account";
- $("#signupNameGroup").classList.toggle("hidden",mode!=="signup");
- $("#authName").required=mode==="signup";
- $("#authPassword").autocomplete=mode==="signup"?"new-password":"current-password";
- $("#authMessage").classList.remove("show");
- $("#authForm").reset();
- openModal("authModal");
+function updateWalletUI(){
+const balance=document.getElementById("walletBalance");
+if(balance)balance.textContent=money(walletBalance);
+const history=document.getElementById("walletHistory");
+if(!history)return;
+history.innerHTML=walletHistory.length?walletHistory.slice(0,8).map(item=>`
+<div class="wallet-activity">
+<div><strong>${esc(item.type)}</strong><small>${esc(item.date)}</small></div>
+<strong class="${item.amount<0?"wallet-negative":"wallet-positive"}">${item.amount<0?"−":"+"}${money(Math.abs(item.amount))}</strong>
+</div>`).join(""):'<p class="section-copy" style="font-size:11px">No wallet activity yet. Your demo top-ups and purchases will appear here.</p>';
 }
-function refreshAccount(){
- $("#headerAuthButton").textContent=currentUser?"My account":"Sign in";
- $("#accountPanelTitle").textContent=currentUser?`Hello, ${currentUser.name.split(" ")[0]}`:"Your account";
- $("#accountPanelEmail").textContent=currentUser?currentUser.email:"Sign in to view your account.";
- $("#accountPanelAction").textContent=currentUser?"View basket":"Sign in";
- $("#signOutButton").classList.toggle("hidden",!currentUser);
+function simulateWalletTopup(){
+if(!currentUser){notify("Please sign in first.");return}
+const input=document.getElementById("walletAmount");
+const amount=Number(input.value);
+if(!Number.isFinite(amount)||amount<500){
+notify("Enter an amount of at least ₦500.");
+return;
 }
-function showAccount(){
- $("#cartDrawer").classList.remove("open");
- $("#overlay").classList.remove("show");
- document.body.style.overflow="";
- refreshAccount();
- $("#accountPanel").classList.toggle("show");
+if(amount>100000000){
+notify("The maximum demo top-up is ₦100,000,000.");
+return;
 }
-function setFormMessage(element,message){
- element.textContent=message;
- element.classList.add("show");
+walletBalance+=amount;
+walletHistory.unshift({type:"Demo wallet top-up",amount,date:new Date().toLocaleString()});
+save("erranngo_wallet_balance",walletBalance);
+save("erranngo_wallet_history",walletHistory);
+input.value="";
+updateWalletUI();
+notify("Demo balance increased by "+money(amount)+". No real transfer occurred.");
 }
-function handleAuth(event){
- event.preventDefault();
- const email=$("#authEmail").value.trim().toLowerCase();
- const password=$("#authPassword").value;
- const message=$("#authMessage");
- message.classList.remove("show");
- if(password.length<6){
-  setFormMessage(message,"Your password must contain at least 6 characters.");
-  return;
- }
- let accounts=readStorage("errandgo_accounts",{});
- if(authMode==="signup"){
-  const name=$("#authName").value.trim();
-  if(name.length<2){
-   setFormMessage(message,"Please enter your full name.");
-   return;
-  }
-  if(accounts[email]){
-   setFormMessage(message,"An account with this email already exists. Please sign in instead.");
-   return;
-  }
-  accounts[email]={name,email,password};
-  if(!saveStorage("errandgo_accounts",accounts)){
-   setFormMessage(message,"Your browser could not save the account. Check browser storage settings.");
-   return;
-  }
-  currentUser={name,email};
-  saveStorage("errandgo_user",currentUser);
-  refreshAccount();
-  closeModal("authModal");
-  showToast("Account created. Welcome to ERRANDGO!");
-  return;
- }
- const account=accounts[email];
- if(!account||account.password!==password){
-  setFormMessage(message,"Email or password is incorrect. If you are new here, create an account first.");
-  return;
- }
- currentUser={name:account.name,email:account.email};
- saveStorage("errandgo_user",currentUser);
- refreshAccount();
- closeModal("authModal");
- showToast("Welcome back, "+account.name.split(" ")[0]+"!");
-}
+
+/* CHECKOUT AND ORDER HISTORY */
 function startCheckout(){
- if(!cartQuantity()){
-  showToast("Your basket is empty.");
-  return;
- }
- closeCart();
- $("#checkoutFormView").classList.remove("hidden");
- $("#checkoutSuccessView").classList.add("hidden");
- $("#checkoutMessage").classList.remove("show");
- $("#checkoutTotal").textContent=money(cartSubtotal()+deliveryCost());
- if(currentUser){
-  $("#deliveryName").value=currentUser.name;
- }
- openModal("checkoutModal");
+if(!currentUser){notify("Please sign in first.");return}
+if(!cart.length){notify("Your basket is empty.");return}
+closeCart();
+document.getElementById("deliveryName").value=currentUser.name||"";
+document.getElementById("deliveryPhone").value=currentUser.phone||"";
+document.getElementById("checkoutSummary").innerHTML=`
+<div class="summary-row"><span>Products (${countCart()} items)</span><strong>${money(subtotal())}</strong></div>
+<div class="summary-row"><span>Delivery</span><strong>${delivery()===0?"FREE":money(delivery())}</strong></div>
+<div class="summary-total"><strong>Total</strong><strong class="orange" style="font-size:18px">${money(subtotal()+delivery())}</strong></div>`;
+document.getElementById("checkoutModal").classList.add("show");
+document.body.classList.add("locked");
+}
+function closeCheckout(){
+document.getElementById("checkoutModal").classList.remove("show");
+unlockIfClear();
 }
 function placeOrder(event){
- event.preventDefault();
- if(!cartQuantity()){
-  setFormMessage($("#checkoutMessage"),"Your basket is empty. Add some ingredients first.");
-  return;
- }
- const order={
-  reference:"EG"+Date.now().toString().slice(-8),
-  customer:$("#deliveryName").value.trim(),
-  phone:$("#deliveryPhone").value.trim(),
-  address:$("#deliveryAddress").value.trim(),
-  city:$("#deliveryCity").value.trim(),
-  state:$("#deliveryState").value,
-  payment:document.querySelector('input[name="paymentMethod"]:checked').value,
-  items:Object.values(cart),
-  subtotal:cartSubtotal(),
-  delivery:deliveryCost(),
-  total:cartSubtotal()+deliveryCost(),
-  date:new Date().toISOString()
- };
- const orders=readStorage("errandgo_orders",[]);
- orders.unshift(order);
- if(!saveStorage("errandgo_orders",orders)){
-  setFormMessage($("#checkoutMessage"),"The browser could not save your order. Please check your browser storage.");
-  return;
- }
- $("#orderSuccessText").textContent=`Order ${order.reference} has been saved in this browser. Total: ${money(order.total)}. This is a demo order; no payment or delivery has been arranged.`;
- cart={};
- saveStorage("errandgo_cart",cart);
- renderCart();
- $("#checkoutFormView").classList.add("hidden");
- $("#checkoutSuccessView").classList.remove("hidden");
+event.preventDefault();
+if(!cart.length){closeCheckout();notify("Your basket is empty.");return}
+const total=subtotal()+delivery();
+if(walletBalance<total){
+closeCheckout();
+openWallet();
+notify("Your demo wallet balance is too low. Top it up first.");
+return;
 }
-function closeAllOverlays(){
- closeCart();
- $$(".modal-wrap").forEach(modal=>modal.classList.remove("show"));
- $("#accountPanel").classList.remove("show");
- $("#mobileNav").classList.remove("open");
- document.body.style.overflow="";
+const name=document.getElementById("deliveryName").value.trim();
+const phone=document.getElementById("deliveryPhone").value.trim();
+const address=document.getElementById("deliveryAddress").value.trim();
+const state=document.getElementById("deliveryState").value;
+if(!name||!phone||!address||!state){notify("Complete all delivery details.");return}
+walletBalance-=total;
+walletHistory.unshift({type:"Demo order purchase",amount:-total,date:new Date().toLocaleString()});
+save("erranngo_wallet_balance",walletBalance);
+save("erranngo_wallet_history",walletHistory);
+const order={
+reference:"ER"+Date.now().toString().slice(-8),
+date:new Date().toLocaleString(),
+items:cart.map(item=>({...item})),
+total,
+customer:{name,phone,address,state},
+payment:"ERRANDGO Demo Wallet",
+status:"Demo order received"
+};
+orders.unshift(order);
+save("erranngo_orders",orders);
+document.getElementById("successDetails").innerHTML=`
+<div class="summary-row"><span class="muted">Order reference</span><strong>${esc(order.reference)}</strong></div>
+<div class="summary-row"><span class="muted">Customer</span><strong>${esc(order.customer.name)}</strong></div>
+<div class="summary-row"><span class="muted">Delivery state</span><strong>${esc(order.customer.state)}</strong></div>
+<div class="summary-row"><span class="muted">Payment</span><strong>${esc(order.payment)}</strong></div>
+<div class="summary-total"><strong>Total</strong><strong class="orange">${money(order.total)}</strong></div>`;
+cart=[];
+save("errandgo_cart",cart);
+updateCart();
+updateWalletUI();
+closeCheckout();
+document.getElementById("successModal").classList.add("show");
+document.body.classList.add("locked");
+document.getElementById("checkoutForm").reset();
+notify("Your demo order was saved.");
+}
+function closeSuccess(){
+document.getElementById("successModal").classList.remove("show");
+unlockIfClear();
+}
+function showOrders(){
+if(!currentUser){notify("Please sign in first.");return}
+if(!orders.length){
+document.getElementById("ordersList").innerHTML=`
+<div style="text-align:center;padding:30px 5px">
+<i class="fa-solid fa-receipt" style="font-size:32px;color:#c9beb0"></i>
+<h3>No orders yet</h3><p class="section-copy">Your demo orders will appear here.</p>
+</div>`;
+}else{
+document.getElementById("ordersList").innerHTML=orders.map(order=>`
+<div class="order-card">
+<div class="order-card-header"><strong style="font-size:13px">${esc(order.reference)}</strong><span class="order-status">${esc(order.status)}</span></div>
+<p style="font-size:10px;color:#8b8379">${esc(order.date)}</p>
+<p style="font-size:11px;line-height:1.8">${order.items.reduce((sum,item)=>sum+item.quantity,0)} items · ${esc(order.customer.address)} · ${esc(order.customer.state)}</p>
+<div class="summary-total"><span>Total</span><strong>${money(order.total)}</strong></div>
+</div>`).join("");
+}
+document.getElementById("ordersModal").classList.add("show");
+document.body.classList.add("locked");
+}
+function closeOrders(){
+document.getElementById("ordersModal").classList.remove("show");
+unlockIfClear();
+}
+function unlockIfClear(){
+const openModal=document.querySelector(".overlay.show");
+const cartOpen=document.getElementById("cartBackdrop").classList.contains("show");
+if(!openModal&&!cartOpen)document.body.classList.remove("locked");
 }
 
-$("#productGrid").addEventListener("click",event=>{
- const add=event.target.closest("[data-add]");
- const favorite=event.target.closest("[data-favorite]");
- if(add)addToCart(add.dataset.add);
- if(favorite){
-  favorite.classList.toggle("liked");
-  const icon=favorite.querySelector("i");
-  icon.classList.toggle("fa-regular");
-  icon.classList.toggle("fa-solid");
-  showToast(favorite.classList.contains("liked")?"Added to favourites":"Removed from favourites");
- }
-});
-$("#cartItems").addEventListener("click",event=>{
- const quantity=event.target.closest("[data-quantity]");
- const remove=event.target.closest("[data-remove]");
- if(quantity)updateQuantity(quantity.dataset.quantity,Number(quantity.dataset.change));
- if(remove)removeFromCart(remove.dataset.remove);
-});
-$("#cartItems").addEventListener("click",event=>{
- if(event.target.closest("#emptyCartShop"))closeCart();
-});
-$("#searchInput").addEventListener("input",renderFoods);
-$("#categoryFilter").addEventListener("change",()=>{
- activeCategory=$("#categoryFilter").value;
- renderFoods();
-});
-$("#sortFilter").addEventListener("change",renderFoods);
-$$(".category-card").forEach(button=>button.addEventListener("click",()=>{
- activeCategory=button.dataset.category;
- $("#categoryFilter").value=activeCategory;
- renderFoods();
- $("#shop").scrollIntoView({behavior:"smooth"});
-}));
-$("#cartButton").addEventListener("click",openCart);
-$("#closeCart").addEventListener("click",closeCart);
-$("#overlay").addEventListener("click",closeCart);
-$("#checkoutButton").addEventListener("click",startCheckout);
-$("#checkoutForm").addEventListener("submit",placeOrder);
-$("#finishOrderButton").addEventListener("click",()=>{
- closeModal("checkoutModal");
- showToast("Thank you for shopping with ERRANDGO!");
-});
-$("#headerAuthButton").addEventListener("click",()=>{
- if(currentUser)showAccount();
- else showAuth("signin");
-});
-$("#accountButton").addEventListener("click",showAccount);
-$("#accountPanelAction").addEventListener("click",()=>{
- $("#accountPanel").classList.remove("show");
- if(currentUser)openCart();
- else showAuth("signin");
-});
-$("#signOutButton").addEventListener("click",()=>{
- currentUser=null;
- try{localStorage.removeItem("errandgo_user")}catch(error){}
- refreshAccount();
- $("#accountPanel").classList.remove("show");
- showToast("You have signed out.");
-});
-$("#authForm").addEventListener("submit",handleAuth);
-$("#authSwitchButton").addEventListener("click",()=>showAuth(authMode==="signin"?"signup":"signin"));
-$("#footerSignIn").addEventListener("click",event=>{event.preventDefault();showAuth("signin")});
-$("#footerCart").addEventListener("click",event=>{event.preventDefault();openCart()});
-$$("[data-close-modal]").forEach(button=>button.addEventListener("click",()=>{
- const modal=button.closest(".modal-wrap");
- if(modal)closeModal(modal.id);
-}));
-$$(".modal-wrap").forEach(modal=>modal.addEventListener("click",event=>{
- if(event.target===modal)closeModal(modal.id);
-}));
-$("#mobileMenuButton").addEventListener("click",()=>{
- const nav=$("#mobileNav");
- nav.classList.toggle("open");
- $("#mobileMenuButton i").className=nav.classList.contains("open")?"fa-solid fa-xmark":"fa-solid fa-bars";
-});
-$("#mobileNav").querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>{
- $("#mobileNav").classList.remove("open");
- $("#mobileMenuButton i").className="fa-solid fa-bars";
-}));
-$("#newsletterForm").addEventListener("submit",event=>{
- event.preventDefault();
- const email=$("#newsletterEmail").value.trim();
- if(!email)return;
- const emails=readStorage("errandgo_newsletter",[]);
- if(emails.includes(email)){
-  showToast("This email is already on the list.");
-  return;
- }
- emails.push(email);
- saveStorage("errandgo_newsletter",emails);
- $("#newsletterForm").reset();
- showToast("Thanks for joining the ERRANDGO list!");
-});
+/* SMALL INTERACTIONS */
+function toggleMobile(forceClose=false){
+const nav=document.getElementById("mobileNav");
+if(forceClose)nav.classList.remove("open");
+else nav.classList.toggle("open");
+}
+function subscribe(event){
+event.preventDefault();
+notify("Thanks for joining the ERRANDGO community!");
+event.target.reset();
+}
 document.addEventListener("keydown",event=>{
- if(event.key==="Escape")closeAllOverlays();
+if(event.key==="Escape"){
+closeAccountMenu();
+closeWallet();
+closeOrders();
+closeCart();
+closeCheckout();
+closeSuccess();
+}
 });
-$("#currentYear").textContent=new Date().getFullYear();
 
+/* STARTUP: SHOW LOGIN FIRST UNLESS THE USER HAS A SAVED SESSION */
+document.getElementById("year").textContent=new Date().getFullYear();
+renderCategories();
 renderFoods();
 renderRestaurants();
-renderCart();
-refreshAccount();
+updateCart();
+updateWalletUI();
+
+const rememberedEmail=load("errandgo_remembered_email","");
+if(rememberedEmail)document.getElementById("authEmail").value=rememberedEmail;
+
+if(currentUser&&currentUser.email){
+const savedAccount=load("errandgo_demo_account",null);
+if(savedAccount&&savedAccount.email===currentUser.email){
+document.getElementById("authScreen").classList.add("hidden");
+document.getElementById("website").classList.remove("hidden");
+document.body.classList.remove("locked");
+updateAccountButton();
+}else{
+currentUser=null;
+save("erranngo_user",null);
+document.getElementById("authScreen").classList.remove("hidden");
+document.getElementById("website").classList.add("hidden");
+document.body.classList.add("locked");
+}
+}else{
+document.getElementById("authScreen").classList.remove("hidden");
+document.getElementById("website").classList.add("hidden");
+document.body.classList.add("locked");
+}
 </script>
 </body>
 </html>
-```
