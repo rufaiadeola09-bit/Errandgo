@@ -1390,45 +1390,13 @@ return sum+(food?food.price*Number(item.quantity||0):0);
 function delivery(){
 return cart.length===0?0:subtotal()>=20000?0:1500;
 }
+
 function addToCart(id){
-    if(!currentUser){
-        notify("Please sign in first.");
-        return;
-    }
-
-    const food=byId(id);
-
-    if(!food){
-        console.error("Product not found. ID:",id);
-        notify("This product could not be found.");
-        return;
-    }
-
-    if(!Array.isArray(cart)){
-        cart=[];
-    }
-
-    const item=cart.find(entry=>Number(entry.id)===Number(food.id));
-
-    if(item){
-        item.quantity=Number(item.quantity||0)+1;
-    }else{
-        cart.push({
-            id:Number(food.id),
-            quantity:1
-        });
-    }
-
-    try{
-        localStorage.setItem("errandgo_cart",JSON.stringify(cart));
-    }catch(error){
-        console.error("Could not save basket:",error);
-    }
-
-    updateCart();
-
-    notify(food.name+" added to your basket.");
+if(!currentUser){
+notify("Please sign in first.");
+return;
 }
+
 const food=byId(id);
 if(!food){
 notify("This product could not be found.");
