@@ -986,79 +986,199 @@ renderCategories();
 renderFoods();
 document.getElementById("menu").scrollIntoView({behavior:"smooth"});
 }
-
 /* BASKET */
-function byId(id){return foods.find(food=>food.id===Number(id))}
-function countCart(){return cart.reduce((sum,item)=>sum+item.quantity,0)}
-function subtotal(){return cart.reduce((sum,item)=>{const food=byId(item.id);return sum+(food?food.price*item.quantity:0)},0)}
-function delivery(){return cart.length===0?0:subtotal()>=20000?0:1500}
+function byId(id){
+return foods.find(food=>food.id===Number(id));
+}
+
+function countCart(){
+return cart.reduce((sum,item)=>sum+Number(item.quantity||0),0);
+}
+
+function subtotal(){
+return cart.reduce((sum,item)=>{
+const food=byId(item.id);
+return sum+(food?food.price*Number(item.quantity||0):0);
+},0);
+}
+
+function delivery(){
+return cart.length===0?0:subtotal()>=20000?0:1500;
+}
+
 function addToCart(id){
-if(!currentUser){notify("Please sign in first.");return}
-const item=cart.find(entry=>entry.id===id);
-if(item)item.quantity++;
-else cart.push({id,quantity:1});
+if(!currentUser){
+notify("Please sign in first.");
+return;
+}
+
+const food=byId(id);
+if(!food){
+notify("This product could not be found.");
+return;
+}
+
+const item=cart.find(entry=>Number(entry.id)===Number(id));
+
+if(item){
+item.quantity=Number(item.quantity||0)+1;
+}else{
+cart.push({id:Number(id),quantity:1});
+}
+
 save("errandgo_cart",cart);
 updateCart();
-notify(byId(id).name+" added to your basket.");
+notify(food.name+" added to your basket.");
 }
+
 function changeQuantity(id,delta){
-const item=cart.find(entry=>entry.id===id);
+const item=cart.find(entry=>Number(entry.id)===Number(id));
 if(!item)return;
-item.quantity+=delta;
-if(item.quantity<=0)cart=cart.filter(entry=>entry.id!==id);
+
+item.quantity=Number(item.quantity||0)+delta;
+
+if(item.quantity<=0){
+cart=cart.filter(entry=>Number(entry.id)!==Number(id));
+}
+
 save("errandgo_cart",cart);
 updateCart();
 }
+
 function removeItem(id){
-cart=cart.filter(item=>item.id!==id);
+cart=cart.filter(item=>Number(item.id)!==Number(id));
 save("errandgo_cart",cart);
 updateCart();
 notify("Item removed from your basket.");
 }
+
 function updateCart(){
-document.getElementById("cartCount").textContent=countCart();
-document.getElementById("drawerCount").textContent="("+countCart()+")";
-if(!cart.length){
-document.getElementById("cartItems").innerHTML=`
+const countElement=document.getElementById("cartCount");
+const drawerCount=document.getElementById("drawerCount");
+const cartItems=document.getElementById("cartItems");
+const cartFooter=document.getElementById("cartFooter");
+
+if(!countElement||!drawerCount||!cartItems||!cartFooter)return;
+
+/* Remove invalid or unavailable products from the basket */
+cart=cart.filter(item=>byId(item.id)&&Number(item.quantity)>0);
+save("errandgo_cart",cart);
+
+const count=countCart();
+countElement.textContent=count;
+drawerCount.textContent="("+count+")";
+
+if(cart.length===0){
+cartItems.innerHTML=`
 <div style="text-align:center;padding:55px 8px">
-<div style="width:68px;height:68px;border-radius:50%;background:#fff0e8;color:var(--orange);display:grid;place-items:center;font-size:25px;margin:auto"><i class="fa-solid fa-basket-shopping"></i></div>
+<div style="width:68px;height:68px;border-radius:50%;background:#fff0e8;color:var(--orange);display:grid;place-items:center;font-size:25px;margin:auto">
+<i class="fa-solid fa-basket-shopping"></i>
+</div>
 <h3 style="font-size:19px;margin:17px 0 7px">Your basket is empty.</h3>
 <p class="section-copy" style="font-size:11px">Let's find something for your kitchen.</p>
-<button class="btn" onclick="closeCart();document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore foodstuffs</button>
+<button class="btn" onclick="closeCart();document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+Explore foodstuffs
+</button>
 </div>`;
-document.getElementById("cartFooter").innerHTML="";
+
+cartFooter.innerHTML="";
 return;
 }
-document.getElementById("cartItems").innerHTML=cart.map(item=>{
+
+cartItems.innerHTML=cart.map(item=>{
 const food=byId(item.id);
 if(!food)return "";
+
 return `
 <div class="cart-row">
-<img src="${esc(food.image)}" alt="${esc(food.name)}" onerror="this.onerror=null;this.style.opacity='.3'">
-<div><h4>${esc(food.name)}</h4><p>${esc(food.restaurant)}</p><strong class="orange" style="display:block;font-size:12px;margin-top:7px">${money(food.price*item.quantity)}</strong>
-<div class="qty"><button onclick="changeQuantity(${food.id},-1)" aria-label="Decrease quantity"><i class="fa-solid fa-minus" style="font-size:9px"></i></button><span style="font-size:11px;font-weight:900">${item.quantity}</span><button onclick="changeQuantity(${food.id},1)" aria-label="Increase quantity"><i class="fa-solid fa-plus" style="font-size:9px"></i></button></div>
+<img src="${esc(food.image)}" alt="${esc(food.name)}"
+onerror="this.onerror=null;this.style.opacity='.3';this.style.background='#eee5dc'">
+
+<div>
+<h4>${esc(food.name)}</h4>
+<p>${esc(food.restaurant)}</p>
+<strong class="orange" style="display:block;font-size:12px;margin-top:7px">
+${money(food.price*item.quantity)}
+</strong>
+
+<div class="qty">
+<button type="button" onclick="changeQuantity(${food.id},-1)" aria-label="Decrease quantity">
+<i class="fa-solid fa-minus" style="font-size:9px"></i>
+</button>
+<span style="font-size:11px;font-weight:900">${item.quantity}</span>
+<button type="button" onclick="changeQuantity(${food.id},1)" aria-label="Increase quantity">
+<i class="fa-solid fa-plus" style="font-size:9px"></i>
+</button>
 </div>
-<button onclick="removeItem(${food.id})" aria-label="Remove ${esc(food.name)}" style="border:0;background:none;color:#9b9185"><i class="fa-regular fa-trash-can"></i></button>
+</div>
+
+<button type="button" onclick="removeItem(${food.id})"
+aria-label="Remove ${esc(food.name)}"
+style="border:0;background:none;color:#9b9185">
+<i class="fa-regular fa-trash-can"></i>
+</button>
 </div>`;
 }).join("");
-document.getElementById("cartFooter").innerHTML=`
-<div class="summary-row"><span class="muted">Subtotal</span><strong>${money(subtotal())}</strong></div>
-<div class="summary-row"><span class="muted">Delivery</span><strong>${delivery()===0?"FREE":money(delivery())}</strong></div>
-${subtotal()<20000?`<p style="font-size:10px;color:#8b8379;margin:0 0 13px">Spend ${money(20000-subtotal())} more for free demo delivery.</p>`:""}
-<div class="summary-total"><strong>Total</strong><strong style="font-size:20px">${money(subtotal()+delivery())}</strong></div>
-<button class="btn" style="width:100%;margin-top:15px" onclick="startCheckout()">Continue to checkout <i class="fa-solid fa-arrow-right"></i></button>
-<p style="font-size:9px;color:#9b9288;text-align:center;margin-bottom:0">Demo checkout. No payment is taken.</p>`;
-}
-function openCart(){
-updateCart();
-document.getElementById("cartBackdrop").classList.add("show");
-document.body.classList.add("locked");
-}
-function closeCart(){
-document.getElementById("cartBackdrop").classList.remove("show");
-unlockIfClear();
+
+const sub=subtotal();
+const deliveryFee=delivery();
+const total=sub+deliveryFee;
+
+cartFooter.innerHTML=`
+<div class="summary-row">
+<span class="muted">Subtotal</span>
+<strong>${money(sub)}</strong>
+</div>
+
+<div class="summary-row">
+<span class="muted">Delivery</span>
+<strong>${deliveryFee===0?"FREE":money(deliveryFee)}</strong>
+</div>
+
+${sub<20000?`
+<p style="font-size:10px;color:#8b8379;margin:0 0 13px">
+Spend ${money(20000-sub)} more for free demo delivery.
+</p>`:""}
+
+<div class="summary-total">
+<strong>Total</strong>
+<strong style="font-size:20px">${money(total)}</strong>
+</div>
+
+<button type="button" class="btn" style="width:100%;margin-top:15px"
+onclick="startCheckout()">
+Continue to checkout <i class="fa-solid fa-arrow-right"></i>
+</button>
+
+<p style="font-size:9px;color:#9b9288;text-align:center;margin-bottom:0">
+Demo checkout. No payment is taken.
+</p>`;
 }
 
+function openCart(){
+if(!currentUser){
+notify("Please sign in first.");
+return;
+}
+
+updateCart();
+
+const backdrop=document.getElementById("cartBackdrop");
+backdrop.style.display="block";
+
+requestAnimationFrame(()=>{
+backdrop.classList.add("show");
+});
+
+document.body.classList.add("locked");
+}
+
+function closeCart(){
+const backdrop=document.getElementById("cartBackdrop");
+backdrop.classList.remove("show");
+backdrop.style.display="none";
+unlockIfClear();
+}
 /* WALLET */
 function openWallet(){
 if(!currentUser){notify("Please sign in to access your wallet.");return}
